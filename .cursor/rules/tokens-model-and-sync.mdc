@@ -1,0 +1,18 @@
+---
+description: Token model, alias handling, and sync policy
+globs: src/shared/**/*.ts
+alwaysApply: false
+---
+
+# Tokens Schema And Mapping
+
+- Keep DTCG-style fields for token data (`$type`, `$value`, reference strings).
+- Alias/reference support is mandatory for MVP, including mode-specific values.
+- Canonical token path in JSON uses `.`, while Figma variable hierarchy uses `/`.
+- Preserve import/export symmetry to avoid structural drift.
+
+# Sync Policy
+
+- JSON is the single source of truth.
+- During import sync, variables missing from JSON should be removed from target scope.
+- Validate references and report missing targets as explicit errors.

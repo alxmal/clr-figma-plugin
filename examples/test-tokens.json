@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "format": "clr-tokens",
+    "version": "0.1.0",
+    "source": "manual-test"
+  },
+  "collections": [
+    {
+      "name": "Primitives",
+      "modes": ["Light", "Dark"],
+      "tokens": {
+        "color": {
+          "brand": {
+            "primary": {
+              "$type": "color",
+              "$value": {
+                "Light": "#3366FF",
+                "Dark": "#82A0FF"
+              }
+            }
+          },
+          "text": {
+            "primary": {
+              "$type": "color",
+              "$value": {
+                "Light": "{color.brand.primary}",
+                "Dark": "{color.brand.primary}"
+              }
+            }
+          }
+        },
+        "spacing": {
+          "100": {
+            "$type": "number",
+            "$value": {
+              "Light": 4,
+              "Dark": 4
+            }
+          }
+        }
+      }
+    }
+  ]
+}

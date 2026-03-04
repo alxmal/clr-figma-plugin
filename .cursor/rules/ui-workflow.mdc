@@ -1,0 +1,12 @@
+---
+description: UI layer responsibilities for plugin controls
+globs: src/ui/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# UI Rules
+
+- UI only orchestrates actions (import/export/generate docs) and displays status/errors/results.
+- Keep business logic in shared/main modules, not inside UI components.
+- Use typed message contracts from `src/shared/messaging/types.ts`.
+- Keep controls explicit: no silent destructive actions without clear status feedback.

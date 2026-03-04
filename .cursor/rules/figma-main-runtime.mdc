@@ -1,0 +1,13 @@
+---
+description: Figma main runtime constraints for plugin code
+globs: src/**/*.ts
+alwaysApply: false
+---
+
+# Main Runtime Rules (Figma Plugin API)
+
+- `src/main` code runs in the Figma plugin context; keep logic independent from React/UI libraries.
+- Use async-safe Plugin API patterns where required (file data can be lazily loaded).
+- Communicate with UI only via typed event handlers from `src/types.ts`.
+- Avoid hidden side effects: import/export/docs commands should report status and errors back to UI.
+- For docs generation, update existing root docs frame when present; create only when missing.

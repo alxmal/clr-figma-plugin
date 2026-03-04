@@ -1,0 +1,25 @@
+---
+description: Use project docs and external references first
+alwaysApply: true
+---
+
+# Documentation Source Of Truth
+
+- Before implementing token import/export/docs logic, review:
+  - `docs/DECISIONS.md`
+  - `docs/PROJECT_BRIEF.md`
+  - `docs/JSON_FORMAT_DRAFT.md`
+  - `docs/DOCUMENTATION_FRAMES_SPEC.md`
+- If code and docs conflict, pause and propose a docs/code alignment change.
+- Treat JSON as source of truth for token sync behavior.
+
+# External References
+
+- Figma Plugin docs (API behavior and constraints): [https://developers.figma.com/docs/plugins/](https://developers.figma.com/docs/plugins/)
+- Tokens Studio docs (token concepts and workflows): [https://docs.tokens.studio/](https://docs.tokens.studio/)
+- Create Figma Plugin docs (tooling and build workflow): [https://yuanqing.github.io/create-figma-plugin/](https://yuanqing.github.io/create-figma-plugin/)
+
+# Working Agreement
+
+- Do not invent a new token format when an agreed structure already exists.
+- Keep import/export behavior symmetric and alias-safe.
