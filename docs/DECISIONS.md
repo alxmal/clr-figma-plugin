@@ -28,6 +28,17 @@
 
 - JSON - единственный источник истины.
 - При импорте удаляем переменные, которых нет во входном JSON.
+- Для градиентов source of truth также JSON: токены `$type: "gradient"` импортируются в локальные Paint Styles.
+
+### Градиенты и ограничения Figma Variables
+
+- Figma Variables не поддерживают тип `gradient`, поэтому градиенты храним как токены в JSON и материализуем в `Local Paint Styles`.
+- При импорте:
+  - токены `color/number/string/boolean` -> Variables,
+  - токены `gradient` -> Local Paint Styles.
+- При экспорте:
+  - Variables и Local Paint Styles сериализуются обратно в единый JSON.
+- Для отображения в UI переменных допускается производная (derived) коллекция строк/полей, но она не является source of truth.
 
 ### Tooling
 

@@ -1,11 +1,13 @@
 import { toJsonTokenPath } from "../shared/mappers";
 import type { ClrTokenFile, TokenGroup, TokenLeaf, TokenPrimitive } from "../shared/schema/tokens";
+import { appendGradientTokensFromLocalStyles } from "./gradients";
 
 interface ExportResult {
   tokenFile: ClrTokenFile;
   stats: {
     collections: number;
     variables: number;
+    gradients: number;
   };
 }
 
@@ -173,11 +175,14 @@ export async function exportTokenFileFromLocalVariables(): Promise<ExportResult>
     collections
   };
 
+  const gradientExportStats = await appendGradientTokensFromLocalStyles(tokenFile);
+
   return {
     tokenFile,
     stats: {
       collections: collections.length,
-      variables: variableCount
+      variables: variableCount,
+      gradients: gradientExportStats.gradients
     }
   };
 }

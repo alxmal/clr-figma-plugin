@@ -9,11 +9,12 @@ import type {
   StatusHandler
 } from "./types";
 import { exportTokenFileFromLocalVariables } from "./main/export";
+import { upsertGradientStylesFromTokens } from "./main/gradients";
 import { validateTokenFile } from "./main/validation";
 import { upsertVariablesFromTokens } from "./main/variables";
 
 export default function () {
-  showUI({ width: 420, height: 640 });
+  showUI({ width: 420, height: 720 });
 
   on<ImportJsonHandler>("IMPORT_JSON", async function (rawJson: string) {
     try {
@@ -25,10 +26,12 @@ export default function () {
         return;
       }
 
-      const importResult = await upsertVariablesFromTokens(parsedJson as ClrTokenFile);
+      const tokenFile = parsedJson as ClrTokenFile;
+      const importResult = await upsertVariablesFromTokens(tokenFile);
+      const gradientResult = await upsertGradientStylesFromTokens(tokenFile);
       emit<StatusHandler>(
         "STATUS",
-        `Import complete: ${importResult.stats.collections} collections, ${importResult.stats.created} created, ${importResult.stats.updated} updated, ${importResult.stats.removed} removed.`
+        `Import complete: ${importResult.stats.collections} collections, ${importResult.stats.created} vars created, ${importResult.stats.updated} vars updated, ${importResult.stats.removed} vars removed, ${gradientResult.gradients} gradient tokens processed, ${gradientResult.created} gradients created, ${gradientResult.updated} gradients updated, ${gradientResult.removed} gradients removed.`
       );
     } catch (error) {
       const messageText = error instanceof Error ? error.message : "Unknown plugin error";
@@ -42,7 +45,7 @@ export default function () {
       emit<ExportResultHandler>("EXPORT_RESULT", JSON.stringify(exportResult.tokenFile, null, 2));
       emit<StatusHandler>(
         "STATUS",
-        `Export complete: ${exportResult.stats.collections} collections, ${exportResult.stats.variables} variables.`
+        `Export complete: ${exportResult.stats.collections} collections, ${exportResult.stats.variables} variables, ${exportResult.stats.gradients} gradients.`
       );
     } catch (error) {
       const messageText = error instanceof Error ? error.message : "Unknown plugin error";

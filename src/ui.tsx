@@ -92,7 +92,6 @@ function Plugin() {
       <VerticalSpace space="small" />
 
       <TextboxMultiline
-        grow
         rows={14}
         value={rawJson}
         onValueInput={setRawJson}
@@ -123,7 +122,7 @@ function Plugin() {
         <div>
           <VerticalSpace space="small" />
           <Text>Export result</Text>
-          <TextboxMultiline rows={8} value={exportJson} onValueInput={setExportJson} />
+          <TextboxMultiline rows={14} value={exportJson} onValueInput={setExportJson} />
         </div>
       ) : null}
       <VerticalSpace space="small" />

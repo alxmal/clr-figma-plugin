@@ -36,7 +36,7 @@ function isTokenLeaf(node: TokenNode): node is TokenLeaf {
   return typeof candidate.$type === "string" && candidate.$value !== undefined;
 }
 
-function mapTokenTypeToVariableType(tokenType: string): VariableType {
+function mapTokenTypeToVariableType(tokenType: string): VariableType | null {
   switch (tokenType) {
     case "color":
       return "COLOR";
@@ -47,6 +47,8 @@ function mapTokenTypeToVariableType(tokenType: string): VariableType {
       return "STRING";
     case "boolean":
       return "BOOLEAN";
+    case "gradient":
+      return null;
     default:
       throw new Error(`Unsupported token type: ${tokenType}`);
   }
@@ -64,11 +66,15 @@ function flattenTokenNode(
     if (!tokenPath) {
       throw new Error(`Token path cannot be empty in collection "${collectionName}"`);
     }
+    const mappedType = mapTokenTypeToVariableType(node.$type);
+    if (!mappedType) {
+      return;
+    }
     flatTokens.push({
       collectionName,
       tokenPath,
       variableName: toFigmaVariableName(tokenPath),
-      type: mapTokenTypeToVariableType(node.$type),
+      type: mappedType,
       description: node.$description ?? "",
       valuesByModeName: normalizeValuesForModes(node.$value, modeNames, tokenPath)
     });
@@ -93,12 +99,18 @@ function normalizeValuesForModes(
   if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
     return Object.fromEntries(modeNames.map((modeName) => [modeName, value]));
   }
+  if ("kind" in value) {
+    throw new Error(`Token "${tokenPath}" cannot use gradient object in variable import`);
+  }
 
   const valuesByModeName: Record<string, TokenPrimitive> = {};
   for (const modeName of modeNames) {
     const modeValue = value[modeName];
     if (modeValue === undefined) {
       throw new Error(`Missing value for mode "${modeName}" in token "${tokenPath}"`);
+    }
+    if (typeof modeValue !== "string" && typeof modeValue !== "number" && typeof modeValue !== "boolean") {
+      throw new Error(`Token "${tokenPath}" has non-primitive value for mode "${modeName}"`);
     }
     valuesByModeName[modeName] = modeValue;
   }
@@ -182,11 +194,23 @@ function ensureCollectionModes(collection: VariableCollection, desiredModeNames:
 function resolveVariableValue(
   rawValue: TokenPrimitive,
   tokenType: VariableType,
-  variablesByCollectionAndPath: Map<string, Variable>
+  variablesByCollectionAndPath: Map<string, Variable>,
+  variablesByPathGlobal: Map<string, Variable[]>
 ): VariableValue {
   const referencePath = parseAliasReference(rawValue);
   if (referencePath) {
-    const referenced = variablesByCollectionAndPath.get(referencePath);
+    const referenced =
+      variablesByCollectionAndPath.get(referencePath) ??
+      (function () {
+        const globalCandidates = variablesByPathGlobal.get(referencePath) ?? [];
+        if (globalCandidates.length === 1) return globalCandidates[0];
+        if (globalCandidates.length > 1) {
+          throw new Error(
+            `Alias target "${referencePath}" is ambiguous across collections (${globalCandidates.length} matches)`
+          );
+        }
+        return null;
+      })();
     if (!referenced) {
       throw new Error(`Alias target not found: "${referencePath}"`);
     }
@@ -300,6 +324,15 @@ export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promis
     }
   }
 
+  const variablesByPathGlobal = new Map<string, Variable[]>();
+  for (const [collectionAndPath, variable] of variablesByCollectionAndPath.entries()) {
+    const separatorIndex = collectionAndPath.indexOf(":");
+    const tokenPath = separatorIndex >= 0 ? collectionAndPath.slice(separatorIndex + 1) : collectionAndPath;
+    const existing = variablesByPathGlobal.get(tokenPath) ?? [];
+    existing.push(variable);
+    variablesByPathGlobal.set(tokenPath, existing);
+  }
+
   for (const collectionInput of tokenFile.collections) {
     const modeNameToModeId = modeMapByCollectionName.get(collectionInput.name);
     if (!modeNameToModeId) {
@@ -331,7 +364,8 @@ export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promis
                 collectionAndPath.replace(`${collectionInput.name}:`, ""),
                 variableRef
               ])
-          )
+          ),
+          variablesByPathGlobal
         );
         variable.setValueForMode(modeId, variableValue);
       }

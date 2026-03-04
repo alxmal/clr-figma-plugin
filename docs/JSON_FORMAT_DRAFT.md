@@ -75,6 +75,56 @@
   - `$type` (`color`, `number`, `string`, `boolean` и т.д.),
   - `$value` (либо одно значение, либо объект по режимам).
 - Alias/reference поддерживаются обязательно для MVP в формате `"{token.path}"`.
+- Для градиентов используется `$type: "gradient"` со структурированным `$value` (см. раздел ниже).
+
+## Градиенты (`$type: gradient`)
+
+Из-за ограничений Figma Variables (нет нативного типа gradient) градиенты в JSON описываются как токены и маппятся в локальные Paint Styles.
+
+Минимальный пример leaf-токена:
+
+```json
+{
+  "$type": "gradient",
+  "$value": {
+    "kind": "linear",
+    "angle": 135,
+    "stops": [
+      { "position": 0, "color": "{color.brand.primary}" },
+      { "position": 40, "color": "#7A5CFA", "opacity": 0.72 },
+      { "position": 100, "color": "#FFFFFF" }
+    ]
+  },
+  "$extensions": {
+    "clr": {
+      "styleName": "gradient/bg/hero"
+    }
+  }
+}
+```
+
+Допускаются два варианта `$value`:
+
+- единый объект градиента (одно значение для всех режимов),
+- объект по режимам (аналогично другим токенам): `$value[modeName] = gradientObject`.
+
+Структура `gradientObject`:
+
+- `kind`: `linear | radial | angular | diamond`
+- `stops`: массив длиной `>= 2`
+- `angle`: число (для `linear`, опционально)
+- `opacity`: число `0..1` (опционально, применяется ко всему градиенту)
+
+Структура `stop`:
+
+- `position`: число `0..100` (проценты)
+- `color`: либо hex (`#RRGGBB`/`#RRGGBBAA`), либо alias `"{token.path}"`
+- `opacity`: число `0..1`, опционально, допускается только для literal hex цвета
+
+Правило прозрачности stop:
+
+- если `color` — alias/reference, `opacity` для stop запрещен (используется прозрачность из целевого токена),
+- если `color` — hex, `opacity` может быть задан явно.
 
 ## Маппинг в Figma (принятые правила)
 
@@ -87,11 +137,17 @@
   - `boolean` -> `BOOLEAN`
 - Для mode-specific значений используется карта `$value[modeName]`.
 - Alias в `$value` преобразуется в alias/reference соответствующей переменной Figma.
+- `$type: "gradient"` маппится в Local Paint Styles:
+  - token path (`gradient.bg.hero`) -> имя стиля (по умолчанию `gradient/bg/hero`, либо `$extensions.clr.styleName`),
+  - `stop.position` (`0..100`) <-> `gradientStops[].position` (`0..1`),
+  - literal stop color переносится как RGBA,
+  - alias stop color разрешен в JSON и должен сохраняться при export/import без потери структуры.
 
 ## Политика синхронизации
 
 - JSON является единственным источником истины.
 - При импорте удаляются переменные в целевой коллекции, которых нет в текущем JSON.
+- При импорте удаляются локальные gradient styles в целевом scope, которых нет в JSON.
 - Обновление должно быть идемпотентным: повторный импорт того же файла не создаёт лишних изменений.
 
 ## Ошибки валидации (базовые)
@@ -101,6 +157,9 @@
 - Невалидный hex-цвет для `$type: color`.
 - Дублирующиеся token path внутри коллекции.
 - Reference указывает на несуществующий token path.
+- Для `$type: gradient`: `stops.length < 2`.
+- Для `$type: gradient`: `stop.position` вне диапазона `0..100`.
+- Для `$type: gradient`: alias stop содержит поле `opacity`.
 
 ## Открытые вопросы
 
