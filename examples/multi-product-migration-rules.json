@@ -1,0 +1,54 @@
+{
+  "coreCollectionName": "Core",
+  "defaultTarget": "Semantic.Common",
+  "sourceCollectionRules": [
+    { "includes": "base", "target": "Core.Base" },
+    { "equals": "product.pay", "target": "Product.Pay" },
+    { "equals": "product.plus", "target": "Product.Plus" },
+    { "equals": "product.pro", "target": "Product.Pro" },
+    { "equals": "product.savers", "target": "Product.Savers" },
+    { "equals": "product.split", "target": "Product.Split" },
+    { "equals": "semantic.pay", "target": "Semantic.Pay" },
+    { "equals": "semantic.plus", "target": "Semantic.Plus" },
+    { "equals": "semantic.pro", "target": "Semantic.Pro" },
+    { "equals": "semantic.savers", "target": "Semantic.Savers" },
+    { "equals": "semantic.split", "target": "Semantic.Split" },
+    { "equals": "semantic.common", "target": "Semantic.Common" },
+    { "includes": "primitive", "target": "Core" },
+    { "includes": "global", "target": "Core" },
+    { "includes": "brand", "target": "Core" }
+  ],
+  "corePathPrefixes": [],
+  "productPathPrefixesByTarget": {
+    "Product.Pay": [
+      "product.pay.",
+      "gradient.pay.",
+      "gradients.pay.",
+      "gradients.gradient.pay.",
+      "gradients.product card.pay."
+    ],
+    "Product.Plus": [
+      "product.plus.",
+      "gradient.plus.",
+      "gradients.plus.",
+      "gradients.gradient.plus.",
+      "gradients.product card.plus."
+    ],
+    "Product.Pro": ["product.pro.", "gradient.pro.", "gradients.pro.", "gradients.gradient.pro."],
+    "Product.Savers": [
+      "product.savers.",
+      "gradient.savers.",
+      "gradients.savers.",
+      "gradients.gradient.savers.",
+      "gradients.product card.savers."
+    ],
+    "Product.Split": ["product.split.", "gradient.split.", "gradients.split.", "gradients.gradient.split."]
+  },
+  "semanticPathPrefixesByTarget": {
+    "Semantic.Pay": ["semantic.pay."],
+    "Semantic.Plus": ["semantic.plus."],
+    "Semantic.Pro": ["semantic.pro."],
+    "Semantic.Savers": ["semantic.savers."],
+    "Semantic.Split": ["semantic.split."]
+  }
+}

@@ -260,6 +260,18 @@ export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promis
     }
   }
 
+  const expectedCollectionNames = new Set(tokenFile.collections.map((collection) => collection.name));
+  const localCollections = await figma.variables.getLocalVariableCollectionsAsync();
+  const localVariables = await figma.variables.getLocalVariablesAsync();
+  for (const localCollection of localCollections) {
+    if (expectedCollectionNames.has(localCollection.name)) continue;
+    const removedInCollection = localVariables.filter(
+      (variable) => variable.variableCollectionId === localCollection.id
+    ).length;
+    localCollection.remove();
+    stats.removed += removedInCollection;
+  }
+
   const variablesByPathGlobal = new Map<string, Variable[]>();
   for (const [collectionAndPath, variable] of variablesByCollectionAndPath.entries()) {
     const separatorIndex = collectionAndPath.indexOf(":");

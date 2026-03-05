@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "format": "clr-tokens",
+    "version": "0.1.0",
+    "source": "multi-product-template"
+  },
+  "collections": [
+    {
+      "name": "Core",
+      "modes": ["Light", "Dark"],
+      "tokens": {
+        "color": {
+          "palette": {
+            "purple": {
+              "500": {
+                "$type": "color",
+                "$value": {
+                  "Light": "#6D4AFF",
+                  "Dark": "#8D74FF"
+                }
+              }
+            },
+            "neutral": {
+              "0": {
+                "$type": "color",
+                "$value": {
+                  "Light": "#FFFFFF",
+                  "Dark": "#111217"
+                }
+              },
+              "900": {
+                "$type": "color",
+                "$value": {
+                  "Light": "#111217",
+                  "Dark": "#F7F8FA"
+                }
+              }
+            }
+          },
+          "alpha": {
+            "overlay-16": {
+              "$type": "color",
+              "$value": {
+                "Light": "#11121729",
+                "Dark": "#F7F8FA29"
+              }
+            }
+          }
+        },
+        "spacing": {
+          "100": {
+            "$type": "number",
+            "$value": {
+              "Light": 4,
+              "Dark": 4
+            }
+          },
+          "200": {
+            "$type": "number",
+            "$value": {
+              "Light": 8,
+              "Dark": 8
+            }
+          }
+        },
+        "radius": {
+          "100": {
+            "$type": "number",
+            "$value": {
+              "Light": 8,
+              "Dark": 8
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Product.Pay",
+      "modes": ["Light", "Dark"],
+      "tokens": {
+        "color": {
+          "brand": {
+            "primary": {
+              "$type": "color",
+              "$value": {
+                "Light": "{color.palette.purple.500}",
+                "Dark": "{color.palette.purple.500}"
+              }
+            }
+          }
+        },
+        "gradient": {
+          "card": {
+            "fill-diamond": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "diamond",
+                "stops": [
+                  { "position": 0, "color": "{color.brand.primary}" },
+                  { "position": 50, "color": "#F6FCA5" },
+                  { "position": 100, "color": "#A9BBE8" }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "product/pay/gradient/card-fill-diamond"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Product.Plus",
+      "modes": ["Light", "Dark"],
+      "tokens": {
+        "color": {
+          "brand": {
+            "primary": {
+              "$type": "color",
+              "$value": {
+                "Light": "#00A3FF",
+                "Dark": "#6CCBFF"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Semantic.Pay",
+      "modes": ["Light", "Dark"],
+      "tokens": {
+        "color": {
+          "bg": {
+            "default": {
+              "$type": "color",
+              "$value": {
+                "Light": "{color.palette.neutral.0}",
+                "Dark": "{color.palette.neutral.0}"
+              }
+            },
+            "accent": {
+              "$type": "color",
+              "$value": {
+                "Light": "{color.brand.primary}",
+                "Dark": "{color.brand.primary}"
+              }
+            }
+          },
+          "text": {
+            "primary": {
+              "$type": "color",
+              "$value": {
+                "Light": "{color.palette.neutral.900}",
+                "Dark": "{color.palette.neutral.900}"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Semantic.Plus",
+      "modes": ["Light", "Dark"],
+      "tokens": {
+        "color": {
+          "bg": {
+            "default": {
+              "$type": "color",
+              "$value": {
+                "Light": "{color.palette.neutral.0}",
+                "Dark": "{color.palette.neutral.0}"
+              }
+            },
+            "accent": {
+              "$type": "color",
+              "$value": {
+                "Light": "{color.brand.primary}",
+                "Dark": "{color.brand.primary}"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

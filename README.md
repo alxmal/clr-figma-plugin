@@ -26,12 +26,6 @@
 - `docs/DECISIONS.md` - зафиксированные продуктовые и технические решения.
 - `docs/QUESTIONS.md` - открытые вопросы для уточнения.
 
-## Ближайшие шаги
-
-1. Реализовать полноценный export engine.
-2. Реализовать docs generator с обновлением существующего фрейма.
-3. Добавить тесты для alias, mode values и sync-delete сценариев.
-
 ## Каркас проекта
 
 Инициализирован каркас на `create-figma-plugin`:
@@ -48,8 +42,45 @@
 - Импорт JSON с валидацией схемы.
 - Создание/обновление коллекций, режимов и переменных в Figma.
 - Поддержка alias/reference в формате `"{token.path}"` внутри коллекции.
-- Удаление переменных, отсутствующих во входном JSON (source of truth policy).
+- Полная синхронизация по source of truth: удаление переменных/коллекций, отсутствующих во входном JSON.
 - Принята модель для градиентов: JSON source of truth -> Local Paint Styles в Figma.
+- Полная синхронизация gradient styles: удаляются локальные gradient styles, отсутствующие во входном JSON.
+- Генерация документации по коллекциям токенов в отдельных фреймах.
+
+## Рекомендованная структура для multi-product систем
+
+Для систем с несколькими продуктами (`Pay`, `Plus`, ...) используйте unified-коллекции:
+
+- `Common` - общая семантика (например `Fill`, `Typography`, aliases на базу).
+- `Core` - базовые primitives (palette, spacing, radius, typography scale).
+- `Product` - продуктовые токены в ветках (`Product.Pay`, `Product.Plus` внутри `tokens`).
+- `External` - внешние/партнерские ветки (`External.S7`, `External.X5` внутри `tokens`).
+
+Практические правила:
+
+- Продукт не должен быть mode (mode оставляем для `Light/Dark` и подобных тем).
+- Состояния (`hover/active/disabled`) задаются именами токенов, а не mode.
+- `Common` ссылается на `Product`/`Core`, `Product` при необходимости ссылается на `Core`.
+- Градиенты хранятся как `$type: "gradient"` и маппятся в Local Paint Styles.
+- Рекомендуемый нейминг gradient styles:
+  - `Product.Pay` -> `Pay Gradients/...`
+  - `Product.Pro` -> `Pro Gradients/...`
+  - `External.S7` -> `S7 Gradients/...`
+  - `Core*` -> `Core Gradients/...`
+  - Legacy naming не поддерживается.
+
+Готовый шаблон: `examples/multi-product-tokens.json`.
+
+Для миграции существующего JSON в эту архитектуру можно использовать утилиту:
+
+```bash
+npm run migrate:multi-product -- \
+  --input examples/test-tokens.json \
+  --rules examples/multi-product-migration-rules.json \
+  --output examples/test-tokens.migrated.json
+```
+
+Примечание: правила в `examples/multi-product-migration-rules.json` — стартовый шаблон, его нужно адаптировать под реальные имена коллекций/префиксы в вашем проекте.
 
 ## Локальный запуск
 
