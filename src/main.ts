@@ -9,6 +9,7 @@ import type {
   StatusHandler
 } from "./types";
 import { exportTokenFileFromLocalVariables } from "./main/export";
+import { generateDocumentationFrames } from "./main/docs-generator";
 import { upsertGradientStylesFromTokens } from "./main/gradients";
 import { validateTokenFile } from "./main/validation";
 import { upsertVariablesFromTokens } from "./main/variables";
@@ -53,7 +54,17 @@ export default function () {
     }
   });
 
-  on<GenerateDocsHandler>("GENERATE_DOCS", function () {
-    emit<StatusHandler>("STATUS", "Docs generator scaffold is ready. Logic will be added next.");
+  on<GenerateDocsHandler>("GENERATE_DOCS", async function () {
+    try {
+      emit<StatusHandler>("STATUS", "Generating docs... please wait.");
+      const docsResult = await generateDocumentationFrames();
+      emit<StatusHandler>(
+        "STATUS",
+        `Docs generated: ${docsResult.sections} sections, ${docsResult.colorRows} color rows, ${docsResult.gradientRows} gradient rows.`
+      );
+    } catch (error) {
+      const messageText = error instanceof Error ? error.message : "Unknown plugin error";
+      emit<ErrorHandler>("ERROR", messageText);
+    }
   });
 }

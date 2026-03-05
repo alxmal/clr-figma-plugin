@@ -1,5 +1,7 @@
 import { toJsonTokenPath } from "../shared/mappers";
+import { rgbaToHex } from "../shared/figma/color";
 import type { ClrTokenFile, TokenGroup, TokenLeaf, TokenPrimitive } from "../shared/schema/tokens";
+import { setTokenAtPath } from "../shared/tokens/tree";
 import { appendGradientTokensFromLocalStyles } from "./gradients";
 
 interface ExportResult {
@@ -26,60 +28,10 @@ function mapVariableTypeToTokenType(variableType: VariableResolvedDataType): str
   }
 }
 
-function channelToHex(value: number): string {
-  const bounded = Math.max(0, Math.min(1, value));
-  const intValue = Math.round(bounded * 255);
-  return intValue.toString(16).padStart(2, "0");
-}
-
-function rgbaToHex(color: RGB | RGBA): string {
-  const red = channelToHex(color.r);
-  const green = channelToHex(color.g);
-  const blue = channelToHex(color.b);
-  const alpha = "a" in color ? channelToHex(color.a) : "ff";
-  if (alpha === "ff") {
-    return `#${red}${green}${blue}`.toUpperCase();
-  }
-  return `#${red}${green}${blue}${alpha}`.toUpperCase();
-}
-
 function isRgbLike(value: VariableValue): value is RGB | RGBA {
   if (typeof value !== "object" || value === null) return false;
   if (!("r" in value) || !("g" in value) || !("b" in value)) return false;
   return true;
-}
-
-function setTokenAtPath(root: TokenGroup, tokenPath: string, leaf: TokenLeaf): void {
-  const pathParts = tokenPath.split(".");
-  if (pathParts.length === 0) return;
-
-  let current: TokenGroup = root;
-  for (let index = 0; index < pathParts.length; index += 1) {
-    const part = pathParts[index];
-    const isLast = index === pathParts.length - 1;
-    const existing = current[part];
-
-    if (isLast) {
-      if (existing && typeof existing === "object" && !("$type" in existing)) {
-        throw new Error(`Cannot set token "${tokenPath}": a group already exists at this path`);
-      }
-      current[part] = leaf;
-      return;
-    }
-
-    if (!existing) {
-      current[part] = {};
-      current = current[part] as TokenGroup;
-      continue;
-    }
-
-    if (typeof existing === "object" && !("$type" in existing)) {
-      current = existing as TokenGroup;
-      continue;
-    }
-
-    throw new Error(`Cannot set token "${tokenPath}": token leaf conflicts with group path`);
-  }
 }
 
 function resolveValueForExport(
@@ -155,7 +107,7 @@ export async function exportTokenFileFromLocalVariables(): Promise<ExportResult>
       }
 
       const tokenPath = toJsonTokenPath(variable.name);
-      setTokenAtPath(tokens, tokenPath, leaf);
+      setTokenAtPath(tokens as Record<string, unknown>, tokenPath, leaf);
       variableCount += 1;
     }
 

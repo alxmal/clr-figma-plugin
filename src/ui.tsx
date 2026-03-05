@@ -32,17 +32,31 @@ function Plugin() {
   const [rawJson, setRawJson] = useState(INITIAL_JSON);
   const [status, setStatus] = useState("Ready");
   const [exportJson, setExportJson] = useState("");
+  const [isBusy, setIsBusy] = useState(false);
+  const [busyAction, setBusyAction] = useState<"import" | "export" | "docs" | null>(null);
 
   useEffect(function () {
     const unbindStatus = on<StatusHandler>("STATUS", function (message: string) {
       setStatus(message);
+      if (
+        message.startsWith("Import complete:") ||
+        message.startsWith("Export complete:") ||
+        message.startsWith("Docs generated:")
+      ) {
+        setIsBusy(false);
+        setBusyAction(null);
+      }
     });
     const unbindError = on<ErrorHandler>("ERROR", function (message: string) {
       setStatus(`Error: ${message}`);
+      setIsBusy(false);
+      setBusyAction(null);
     });
     const unbindExport = on<ExportResultHandler>("EXPORT_RESULT", function (json: string) {
       setExportJson(json);
       setStatus("Export completed");
+      setIsBusy(false);
+      setBusyAction(null);
     });
 
     return function () {
@@ -53,14 +67,23 @@ function Plugin() {
   }, []);
 
   const handleImport = useCallback(function () {
+    setIsBusy(true);
+    setBusyAction("import");
+    setStatus("Applying JSON... please wait.");
     emit<ImportJsonHandler>("IMPORT_JSON", rawJson);
   }, [rawJson]);
 
   const handleExport = useCallback(function () {
+    setIsBusy(true);
+    setBusyAction("export");
+    setStatus("Exporting from Figma... please wait.");
     emit<ExportJsonHandler>("EXPORT_JSON");
   }, []);
 
   const handleGenerateDocs = useCallback(function () {
+    setIsBusy(true);
+    setBusyAction("docs");
+    setStatus("Generating docs... please wait.");
     emit<GenerateDocsHandler>("GENERATE_DOCS");
   }, []);
 
@@ -98,19 +121,36 @@ function Plugin() {
       />
 
       <VerticalSpace space="small" />
-      <Button fullWidth onClick={handleImport}>
+      <Button
+        fullWidth
+        onClick={handleImport}
+        disabled={isBusy}
+        loading={isBusy && busyAction === "import"}
+      >
         Apply JSON to Figma
       </Button>
       <VerticalSpace space="extraSmall" />
-      <Button fullWidth secondary onClick={handleExport}>
+      <Button
+        fullWidth
+        secondary
+        onClick={handleExport}
+        disabled={isBusy}
+        loading={isBusy && busyAction === "export"}
+      >
         Read Figma Variables to JSON
       </Button>
       <VerticalSpace space="extraSmall" />
-      <Button fullWidth secondary onClick={handleGenerateDocs}>
+      <Button
+        fullWidth
+        secondary
+        onClick={handleGenerateDocs}
+        disabled={isBusy}
+        loading={isBusy && busyAction === "docs"}
+      >
         Generate docs
       </Button>
       <VerticalSpace space="extraSmall" />
-      <Button fullWidth secondary onClick={handleSaveExport}>
+      <Button fullWidth secondary onClick={handleSaveExport} disabled={isBusy}>
         Save export file
       </Button>
 

@@ -13,7 +13,6 @@ export interface GradientValue {
   kind: GradientKind;
   stops: GradientStop[];
   angle?: number;
-  opacity?: number;
 }
 
 export type TokenLeafValue = TokenPrimitive | GradientValue;
@@ -43,8 +42,7 @@ export const gradientStopSchema = z.object({
 export const gradientValueSchema = z.object({
   kind: z.enum(["linear", "radial", "angular", "diamond"]),
   stops: z.array(gradientStopSchema),
-  angle: z.number().optional(),
-  opacity: z.number().optional()
+  angle: z.number().optional()
 });
 
 export const tokenValueSchema = z.union([

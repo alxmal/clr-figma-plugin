@@ -55,8 +55,8 @@ function isGradientObject(value: unknown, path: string): ValidationResult {
   if (value.angle !== undefined && typeof value.angle !== "number") {
     return { ok: false, error: `Gradient angle at "${path}.angle" must be number` };
   }
-  if (value.opacity !== undefined && (typeof value.opacity !== "number" || value.opacity < 0 || value.opacity > 1)) {
-    return { ok: false, error: `Gradient opacity at "${path}.opacity" must be number in 0..1` };
+  if (value.opacity !== undefined) {
+    return { ok: false, error: `Gradient value at "${path}" does not support "opacity"` };
   }
 
   for (let index = 0; index < value.stops.length; index += 1) {

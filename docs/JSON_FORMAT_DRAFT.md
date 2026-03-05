@@ -113,7 +113,6 @@
 - `kind`: `linear | radial | angular | diamond`
 - `stops`: массив длиной `>= 2`
 - `angle`: число (для `linear`, опционально)
-- `opacity`: число `0..1` (опционально, применяется ко всему градиенту)
 
 Структура `stop`:
 
@@ -160,6 +159,7 @@
 - Для `$type: gradient`: `stops.length < 2`.
 - Для `$type: gradient`: `stop.position` вне диапазона `0..100`.
 - Для `$type: gradient`: alias stop содержит поле `opacity`.
+- Для `$type: gradient`: поле `gradientObject.opacity` не поддерживается.
 
 ## Открытые вопросы
 

@@ -1,10 +1,13 @@
 import { toFigmaVariableName } from "../../shared/mappers";
+import { hexToRgba } from "../../shared/figma/color";
 import type {
   ClrTokenFile,
   TokenLeaf,
   TokenNode,
   TokenPrimitive
 } from "../../shared/schema/tokens";
+import { parseAliasReference } from "../../shared/tokens/references";
+import { walkTokenTree } from "../../shared/tokens/tree";
 
 type VariableType = VariableResolvedDataType;
 
@@ -28,14 +31,6 @@ interface ImportResult {
   stats: ImportStats;
 }
 
-const ALIAS_REFERENCE_PATTERN = /^\{([^}]+)\}$/;
-
-function isTokenLeaf(node: TokenNode): node is TokenLeaf {
-  if (typeof node !== "object" || node === null || Array.isArray(node)) return false;
-  const candidate = node as Partial<TokenLeaf>;
-  return typeof candidate.$type === "string" && candidate.$value !== undefined;
-}
-
 function mapTokenTypeToVariableType(tokenType: string): VariableType | null {
   switch (tokenType) {
     case "color":
@@ -51,43 +46,6 @@ function mapTokenTypeToVariableType(tokenType: string): VariableType | null {
       return null;
     default:
       throw new Error(`Unsupported token type: ${tokenType}`);
-  }
-}
-
-function flattenTokenNode(
-  collectionName: string,
-  node: TokenNode,
-  pathParts: string[],
-  modeNames: string[],
-  flatTokens: FlatToken[]
-): void {
-  if (isTokenLeaf(node)) {
-    const tokenPath = pathParts.join(".");
-    if (!tokenPath) {
-      throw new Error(`Token path cannot be empty in collection "${collectionName}"`);
-    }
-    const mappedType = mapTokenTypeToVariableType(node.$type);
-    if (!mappedType) {
-      return;
-    }
-    flatTokens.push({
-      collectionName,
-      tokenPath,
-      variableName: toFigmaVariableName(tokenPath),
-      type: mappedType,
-      description: node.$description ?? "",
-      valuesByModeName: normalizeValuesForModes(node.$value, modeNames, tokenPath)
-    });
-    return;
-  }
-
-  for (const [key, child] of Object.entries(node)) {
-    if (key.startsWith("$")) {
-      continue;
-    }
-    const childPath = pathParts.slice();
-    childPath.push(key);
-    flattenTokenNode(collectionName, child as TokenNode, childPath, modeNames, flatTokens);
   }
 }
 
@@ -115,39 +73,6 @@ function normalizeValuesForModes(
     valuesByModeName[modeName] = modeValue;
   }
   return valuesByModeName;
-}
-
-function parseAliasReference(rawValue: TokenPrimitive): string | null {
-  if (typeof rawValue !== "string") return null;
-  const match = rawValue.match(ALIAS_REFERENCE_PATTERN);
-  if (!match) return null;
-  return match[1].trim();
-}
-
-function hexToRgba(hex: string): RGBA {
-  const normalized = hex.trim().replace(/^#/, "");
-  if (![3, 4, 6, 8].includes(normalized.length)) {
-    throw new Error(`Invalid hex color: "${hex}"`);
-  }
-
-  const expanded =
-    normalized.length === 3 || normalized.length === 4
-      ? normalized
-          .split("")
-          .map((c) => c + c)
-          .join("")
-      : normalized;
-
-  const red = Number.parseInt(expanded.slice(0, 2), 16) / 255;
-  const green = Number.parseInt(expanded.slice(2, 4), 16) / 255;
-  const blue = Number.parseInt(expanded.slice(4, 6), 16) / 255;
-  const alpha = expanded.length === 8 ? Number.parseInt(expanded.slice(6, 8), 16) / 255 : 1;
-
-  if ([red, green, blue, alpha].some((v) => Number.isNaN(v))) {
-    throw new Error(`Invalid hex color: "${hex}"`);
-  }
-
-  return { r: red, g: green, b: blue, a: alpha };
 }
 
 function ensureCollectionModes(collection: VariableCollection, desiredModeNames: string[]): Map<string, string> {
@@ -197,7 +122,7 @@ function resolveVariableValue(
   variablesByCollectionAndPath: Map<string, Variable>,
   variablesByPathGlobal: Map<string, Variable[]>
 ): VariableValue {
-  const referencePath = parseAliasReference(rawValue);
+  const referencePath = typeof rawValue === "string" ? parseAliasReference(rawValue) : null;
   if (referencePath) {
     const referenced =
       variablesByCollectionAndPath.get(referencePath) ??
@@ -267,7 +192,18 @@ export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promis
   const flatTokensByCollectionName = new Map<string, FlatToken[]>();
   for (const collectionInput of tokenFile.collections) {
     const flatTokens: FlatToken[] = [];
-    flattenTokenNode(collectionInput.name, collectionInput.tokens as TokenNode, [], collectionInput.modes, flatTokens);
+    walkTokenTree(collectionInput.tokens as TokenNode, ({ leaf, tokenPath }) => {
+      const mappedType = mapTokenTypeToVariableType(leaf.$type);
+      if (!mappedType) return;
+      flatTokens.push({
+        collectionName: collectionInput.name,
+        tokenPath,
+        variableName: toFigmaVariableName(tokenPath),
+        type: mappedType,
+        description: leaf.$description ?? "",
+        valuesByModeName: normalizeValuesForModes(leaf.$value, collectionInput.modes, tokenPath)
+      });
+    });
 
     const seenPaths = new Set<string>();
     for (const token of flatTokens) {

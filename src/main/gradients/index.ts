@@ -1,4 +1,5 @@
 import { toFigmaVariableName, toJsonTokenPath } from "../../shared/mappers";
+import { hexToRgba, rgbaToHex } from "../../shared/figma/color";
 import type {
   ClrTokenFile,
   GradientStop,
@@ -8,8 +9,9 @@ import type {
   TokenNode,
   TokenPrimitive
 } from "../../shared/schema/tokens";
+import { parseAliasReference } from "../../shared/tokens/references";
+import { setTokenAtPath, walkTokenTree } from "../../shared/tokens/tree";
 
-const ALIAS_REFERENCE_PATTERN = /^\{([^}]+)\}$/;
 const GRADIENT_META_PREFIX = "CLR_GRADIENT_META::";
 
 interface GradientFlatToken {
@@ -45,18 +47,6 @@ type GradientPaintType =
   | "GRADIENT_RADIAL"
   | "GRADIENT_ANGULAR"
   | "GRADIENT_DIAMOND";
-
-function isTokenLeaf(node: TokenNode): node is TokenLeaf {
-  if (typeof node !== "object" || node === null || Array.isArray(node)) return false;
-  const candidate = node as Partial<TokenLeaf>;
-  return typeof candidate.$type === "string" && candidate.$value !== undefined;
-}
-
-function parseAliasReference(rawValue: string): string | null {
-  const match = rawValue.match(ALIAS_REFERENCE_PATTERN);
-  if (!match) return null;
-  return match[1].trim();
-}
 
 function getStyleNameFromLeaf(leaf: TokenLeaf, tokenPath: string): string {
   const clrExtensions = leaf.$extensions?.clr;
@@ -119,45 +109,35 @@ function normalizeGradientValuesByMode(
 function flattenGradientNodes(
   collectionName: string,
   node: TokenNode,
-  pathParts: string[],
   modeNames: string[],
   flatTokens: GradientFlatToken[]
 ): void {
-  if (isTokenLeaf(node)) {
-    if (node.$type !== "gradient") return;
-    const tokenPath = pathParts.join(".");
-    if (!tokenPath) {
-      throw new Error(`Gradient token path cannot be empty in collection "${collectionName}"`);
-    }
+  walkTokenTree(node, ({ leaf, tokenPath }) => {
+    if (leaf.$type !== "gradient") return;
     flatTokens.push({
       collectionName,
       tokenPath,
-      styleName: getStyleNameFromLeaf(node, tokenPath),
-      description: node.$description ?? "",
-      value: node.$value,
-      valuesByModeName: normalizeGradientValuesByMode(node.$value, modeNames, tokenPath)
+      styleName: getStyleNameFromLeaf(leaf, tokenPath),
+      description: leaf.$description ?? "",
+      value: leaf.$value,
+      valuesByModeName: normalizeGradientValuesByMode(leaf.$value, modeNames, tokenPath)
     });
-    return;
-  }
-
-  for (const [key, child] of Object.entries(node)) {
-    if (key.startsWith("$")) continue;
-    flattenGradientNodes(collectionName, child as TokenNode, pathParts.concat(key), modeNames, flatTokens);
-  }
+  });
 }
 
 function flattenColorTokenValues(
   node: TokenNode,
-  pathParts: string[],
   modeNames: string[],
   target: Map<string, Record<string, TokenPrimitive>>
 ): void {
-  if (isTokenLeaf(node)) {
-    if (node.$type !== "color") return;
-    const tokenPath = pathParts.join(".");
-    if (!tokenPath) return;
-    if (typeof node.$value === "string" || typeof node.$value === "number" || typeof node.$value === "boolean") {
-      const singleValue = node.$value;
+  walkTokenTree(node, ({ leaf, tokenPath }) => {
+    if (leaf.$type !== "color") return;
+    if (
+      typeof leaf.$value === "string" ||
+      typeof leaf.$value === "number" ||
+      typeof leaf.$value === "boolean"
+    ) {
+      const singleValue = leaf.$value;
       target.set(
         tokenPath,
         Object.fromEntries(modeNames.map((modeName) => [modeName, singleValue])) as Record<
@@ -167,11 +147,11 @@ function flattenColorTokenValues(
       );
       return;
     }
-    if ("kind" in node.$value) {
+    if ("kind" in leaf.$value) {
       return;
     }
 
-    const modeRecord = node.$value as Record<string, TokenLeafValue>;
+    const modeRecord = leaf.$value as Record<string, TokenLeafValue>;
     const modeValues: Record<string, TokenPrimitive> = {};
     for (const modeName of modeNames) {
       const modeValue = modeRecord[modeName];
@@ -181,44 +161,7 @@ function flattenColorTokenValues(
       }
     }
     target.set(tokenPath, modeValues);
-    return;
-  }
-
-  for (const [key, child] of Object.entries(node)) {
-    if (key.startsWith("$")) continue;
-    flattenColorTokenValues(child as TokenNode, pathParts.concat(key), modeNames, target);
-  }
-}
-
-function hexToRgba(hex: string): RGBA {
-  const normalized = hex.trim().replace(/^#/, "");
-  const isValidLength = normalized.length === 3 || normalized.length === 4 || normalized.length === 6 || normalized.length === 8;
-  if (!isValidLength) {
-    throw new Error(`Invalid hex color: "${hex}"`);
-  }
-  const expanded =
-    normalized.length === 3 || normalized.length === 4
-      ? normalized
-          .split("")
-          .map((char) => `${char}${char}`)
-          .join("")
-      : normalized;
-
-  const red = Number.parseInt(expanded.slice(0, 2), 16) / 255;
-  const green = Number.parseInt(expanded.slice(2, 4), 16) / 255;
-  const blue = Number.parseInt(expanded.slice(4, 6), 16) / 255;
-  const alpha = expanded.length === 8 ? Number.parseInt(expanded.slice(6, 8), 16) / 255 : 1;
-  return { r: red, g: green, b: blue, a: alpha };
-}
-
-function channelToHex(value: number): string {
-  const bounded = Math.max(0, Math.min(1, value));
-  const intValue = Math.round(bounded * 255);
-  return intValue.toString(16).padStart(2, "0");
-}
-
-function rgbToHex(color: RGB | RGBA): string {
-  return `#${channelToHex(color.r)}${channelToHex(color.g)}${channelToHex(color.b)}`.toUpperCase();
+  });
 }
 
 function composeStyleDescription(description: string, metadata: GradientMetadata): string {
@@ -286,7 +229,12 @@ function mapPaintTypeToKind(type: GradientPaintType): GradientValue["kind"] {
   }
 }
 
-function buildLinearGradientTransform(angleDegrees: number | undefined): Transform {
+function normalizeAngleDegrees(angleDegrees: number): number {
+  const normalized = angleDegrees % 360;
+  return normalized < 0 ? normalized + 360 : normalized;
+}
+
+function buildGradientTransform(angleDegrees: number | undefined): Transform {
   const angle = ((angleDegrees ?? 0) * Math.PI) / 180;
   const vectorX = Math.cos(angle);
   const vectorY = Math.sin(angle);
@@ -299,13 +247,21 @@ function buildLinearGradientTransform(angleDegrees: number | undefined): Transfo
 }
 
 function getGradientTransform(gradient: GradientValue): Transform {
-  if (gradient.kind === "linear") {
-    return buildLinearGradientTransform(gradient.angle);
+  if (gradient.kind === "linear" || gradient.kind === "angular") {
+    return buildGradientTransform(gradient.angle);
   }
   return [
     [1, 0, 0],
     [0, 1, 0]
   ];
+}
+
+function extractAngleFromGradientTransform(transform: Transform): number {
+  const xAxisX = transform[0][0];
+  const xAxisY = transform[1][0];
+  const radians = Math.atan2(xAxisY, xAxisX);
+  const degrees = (radians * 180) / Math.PI;
+  return Math.round(normalizeAngleDegrees(degrees) * 100) / 100;
 }
 
 function resolveColorAlias(
@@ -379,35 +335,8 @@ function createGradientPaintFromValue(
       gradientStopToColorStop(stop, modeName, colorValuesByPath, globalColorValuesByPath)
     ),
     visible: true,
-    opacity: gradient.opacity ?? 1,
     blendMode: "NORMAL"
   };
-}
-
-function setTokenAtPath(root: Record<string, unknown>, tokenPath: string, leaf: TokenLeaf): void {
-  const pathParts = tokenPath.split(".");
-  let current = root;
-  for (let index = 0; index < pathParts.length; index += 1) {
-    const part = pathParts[index];
-    const isLast = index === pathParts.length - 1;
-    const existing = current[part];
-
-    if (isLast) {
-      current[part] = leaf;
-      return;
-    }
-
-    if (!existing) {
-      current[part] = {};
-      current = current[part] as Record<string, unknown>;
-      continue;
-    }
-    if (typeof existing === "object" && existing !== null && !Array.isArray(existing) && !("$type" in existing)) {
-      current = existing as Record<string, unknown>;
-      continue;
-    }
-    throw new Error(`Cannot place token "${tokenPath}": path conflicts with existing token`);
-  }
 }
 
 function extractGradientPaint(style: PaintStyle): GradientPaint | null {
@@ -427,17 +356,17 @@ function extractGradientPaint(style: PaintStyle): GradientPaint | null {
 function gradientPaintToValue(paint: GradientPaint): GradientValue {
   return {
     kind: mapPaintTypeToKind(paint.type),
+    angle: extractAngleFromGradientTransform(paint.gradientTransform),
     stops: paint.gradientStops.map((stop) => {
       const result: GradientStop = {
         position: Math.round(stop.position * 10000) / 100,
-        color: rgbToHex(stop.color)
+        color: rgbaToHex(stop.color)
       };
       if (stop.color.a < 1) {
         result.opacity = Math.round(stop.color.a * 1000) / 1000;
       }
       return result;
-    }),
-    opacity: paint.opacity
+    })
   };
 }
 
@@ -452,11 +381,11 @@ export async function upsertGradientStylesFromTokens(tokenFile: ClrTokenFile): P
 
   for (const collection of tokenFile.collections) {
     const gradients: GradientFlatToken[] = [];
-    flattenGradientNodes(collection.name, collection.tokens as TokenNode, [], collection.modes, gradients);
+    flattenGradientNodes(collection.name, collection.tokens as TokenNode, collection.modes, gradients);
     gradientsByCollection.set(collection.name, gradients);
 
     const colorByPath = new Map<string, Record<string, TokenPrimitive>>();
-    flattenColorTokenValues(collection.tokens as TokenNode, [], collection.modes, colorByPath);
+    flattenColorTokenValues(collection.tokens as TokenNode, collection.modes, colorByPath);
     colorValuesByCollection.set(collection.name, colorByPath);
     for (const [tokenPath, modeValues] of colorByPath.entries()) {
       if (!globalColorValuesByPath.has(tokenPath)) {
