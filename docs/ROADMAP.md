@@ -58,9 +58,21 @@
 
 **Выход:** визуальный и текстовый режимы редактирования конфигов в одном плагине.
 
+## Phase 7 - Developer Export Pipeline
+
+- Добавить отдельный transformer для выгрузки design tokens в dev-friendly артефакты.
+- Поддержать как минимум:
+  - `tokens.css` (CSS custom properties с `var(...)`),
+  - `tokens.resolved.json` (alias уже раскрыты),
+  - сериализацию gradient-токенов в формат для frontend (объект и/или CSS gradient string).
+- Добавить CLI-команду (`npm run export:dev`) и документацию по интеграции в CI.
+
+**Выход:** стабильный pipeline для доставки токенов разработчикам без ручной постобработки.
+
 ## Current Status Notes
 
 - Import/export для variables и gradients реализован.
 - Поддержан multi-product подход через unified-коллекции `Common` / `Core` / `Product` / `External`.
 - Добавлена утилита миграции legacy JSON в multi-product структуру.
 - Документация генерируется по коллекциям и учитывает gradient styles.
+- Feature request зафиксирован: отдельная dev-выгрузка (CSS/JSON) как следующий этап.

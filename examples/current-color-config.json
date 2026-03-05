@@ -97,13 +97,6 @@
               "Dark": "#F5F7F9"
             }
           },
-          "Color7-600-[40%]": {
-            "$type": "color",
-            "$value": {
-              "Light": "#56557A66",
-              "Dark": "#E2DFF566"
-            }
-          },
           "Color1-100": {
             "$type": "color",
             "$value": {
@@ -396,6 +389,13 @@
             "$value": {
               "Light": "{Color.Violet.600}",
               "Dark": "{Color.Violet.600}"
+            }
+          },
+          "Color7-600-[40%]": {
+            "$type": "color",
+            "$value": {
+              "Light": "#56557A66",
+              "Dark": "#E2DFF566"
             }
           },
           "Color8-100": {
@@ -704,6 +704,13 @@
               "$value": {
                 "Light": "#2122242B",
                 "Dark": "#2122242B"
+              },
+              "$extensions": {
+                "clr": {
+                  "scopes": [
+                    "EFFECT_COLOR"
+                  ]
+                }
               }
             }
           },
@@ -741,6 +748,13 @@
               "$value": {
                 "Light": "#2122242B",
                 "Dark": "#2E2F332B"
+              },
+              "$extensions": {
+                "clr": {
+                  "scopes": [
+                    "EFFECT_COLOR"
+                  ]
+                }
               }
             }
           },
@@ -778,6 +792,13 @@
               "$value": {
                 "Light": "#2122242B",
                 "Dark": "#2E2F332B"
+              },
+              "$extensions": {
+                "clr": {
+                  "scopes": [
+                    "EFFECT_COLOR"
+                  ]
+                }
               }
             }
           }
@@ -788,6 +809,13 @@
             "$value": {
               "Light": "#000000DB",
               "Dark": "#FFFFFFE0"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Secondary": {
@@ -795,6 +823,13 @@
             "$value": {
               "Light": "#00000080",
               "Dark": "#FFFFFF80"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Tertiary": {
@@ -802,6 +837,13 @@
             "$value": {
               "Light": "#0000004D",
               "Dark": "#FFFFFF59"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Quaternary": {
@@ -809,6 +851,13 @@
             "$value": {
               "Light": "#00000033",
               "Dark": "#FFFFFF40"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Negative": {
@@ -816,6 +865,13 @@
             "$value": {
               "Light": "{Fill.Color1-400}",
               "Dark": "{Fill.Color1-400}"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Positive": {
@@ -823,6 +879,13 @@
             "$value": {
               "Light": "{Fill.Color4-500}",
               "Dark": "{Fill.Color4-300}"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Primary Inverted": {
@@ -830,6 +893,13 @@
             "$value": {
               "Light": "#FFFFFFFA",
               "Dark": "#000000DB"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Secondary Inverted": {
@@ -837,6 +907,13 @@
             "$value": {
               "Light": "#FFFFFFA6",
               "Dark": "#00000080"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Tertiary Inverted": {
@@ -844,6 +921,13 @@
             "$value": {
               "Light": "#FFFFFF73",
               "Dark": "#0000004D"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Quaternary Inverted": {
@@ -851,6 +935,13 @@
             "$value": {
               "Light": "#FFFFFF4D",
               "Dark": "#00000033"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Link Normal": {
@@ -858,6 +949,13 @@
             "$value": {
               "Light": "{Fill.Color5-500}",
               "Dark": "{Fill.Color5-300}"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Link Pressed": {
@@ -865,6 +963,13 @@
             "$value": {
               "Light": "{Fill.Color5-400}",
               "Dark": "{Fill.Color5-400}"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Primary Static": {
@@ -872,6 +977,13 @@
             "$value": {
               "Light": "#000000DB",
               "Dark": "#000000DB"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Secondary Static": {
@@ -879,6 +991,13 @@
             "$value": {
               "Light": "#00000080",
               "Dark": "#00000080"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Primary Static Inverted": {
@@ -886,6 +1005,13 @@
             "$value": {
               "Light": "#FFFFFFFA",
               "Dark": "#FFFFFFE0"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Secondary Static Inverted": {
@@ -893,6 +1019,13 @@
             "$value": {
               "Light": "#FFFFFFA6",
               "Dark": "#FFFFFF80"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Plus Solid": {
@@ -900,6 +1033,13 @@
             "$value": {
               "Light": "#9F00D6B2",
               "Dark": "#9F00D6E5"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Warning": {
@@ -907,6 +1047,13 @@
             "$value": {
               "Light": "{Fill.Color2-500}",
               "Dark": "{Fill.Color2-500}"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Warning Static": {
@@ -914,6 +1061,13 @@
             "$value": {
               "Light": "#EDA77E",
               "Dark": "#EDA77E"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
             }
           },
           "Quaternary Static Inverted": {
@@ -921,6 +1075,89 @@
             "$value": {
               "Light": "#FFFFFF4D",
               "Dark": "#FFFFFF40"
+            },
+            "$extensions": {
+              "clr": {
+                "scopes": [
+                  "TEXT_FILL"
+                ]
+              }
+            }
+          }
+        },
+        "Background": {
+          "gradient": {
+            "Muted": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 270,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FFFFFF00",
+                    "opacity": 0
+                  },
+                  {
+                    "position": 55,
+                    "color": "#FFFFFF"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Background Gradients/Muted"
+                }
+              }
+            },
+            "HSGradient": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 270,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FFFFFF"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#EDEFF2"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Background Gradients/HSGradient"
+                }
+              }
+            }
+          }
+        },
+        "Other": {
+          "gradient": {
+            "GoFogLR": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 0,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FFFFFF"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#FFFFFF00",
+                    "opacity": 0
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Other Gradients/GoFogLR"
+                }
+              }
             }
           }
         }
@@ -2541,82 +2778,6 @@
               "$extensions": {
                 "clr": {
                   "styleName": "Pro Gradients/Base"
-                }
-              }
-            }
-          }
-        },
-        "Background": {
-          "gradient": {
-            "Muted": {
-              "$type": "gradient",
-              "$value": {
-                "kind": "linear",
-                "angle": 270,
-                "stops": [
-                  {
-                    "position": 0,
-                    "color": "#FFFFFF00",
-                    "opacity": 0
-                  },
-                  {
-                    "position": 55,
-                    "color": "#FFFFFF"
-                  }
-                ]
-              },
-              "$extensions": {
-                "clr": {
-                  "styleName": "Background Gradients/Muted"
-                }
-              }
-            },
-            "HSGradient": {
-              "$type": "gradient",
-              "$value": {
-                "kind": "linear",
-                "angle": 270,
-                "stops": [
-                  {
-                    "position": 0,
-                    "color": "#FFFFFF"
-                  },
-                  {
-                    "position": 100,
-                    "color": "#EDEFF2"
-                  }
-                ]
-              },
-              "$extensions": {
-                "clr": {
-                  "styleName": "Background Gradients/HSGradient"
-                }
-              }
-            }
-          }
-        },
-        "Other": {
-          "gradient": {
-            "GoFogLR": {
-              "$type": "gradient",
-              "$value": {
-                "kind": "linear",
-                "angle": 0,
-                "stops": [
-                  {
-                    "position": 0,
-                    "color": "#FFFFFF"
-                  },
-                  {
-                    "position": 100,
-                    "color": "#FFFFFF00",
-                    "opacity": 0
-                  }
-                ]
-              },
-              "$extensions": {
-                "clr": {
-                  "styleName": "Other Gradients/GoFogLR"
                 }
               }
             }

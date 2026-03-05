@@ -79,6 +79,9 @@
 - Для переменных поддерживается `"$extensions.clr.hideFromPublishing": true|false`:
   - `true` -> в Figma для variable выставляется `hiddenFromPublishing = true`,
   - `false` или отсутствие поля -> `hiddenFromPublishing = false`.
+- Для переменных поддерживается `"$extensions.clr.scopes": string[]`:
+  - массив scope-значений Figma (например `["TEXT_FILL"]`, `["ALL_FILLS"]`),
+  - при отсутствии поля применяется `["ALL_SCOPES"]`.
 
 ## Градиенты (`$type: gradient`)
 

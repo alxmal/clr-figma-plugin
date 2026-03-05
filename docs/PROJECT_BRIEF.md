@@ -39,6 +39,14 @@ CLR Plugin нужен для удобного обмена дизайн-токе
 - Работа с git прямо из плагина.
 - Сложные темы прав доступа и multi-workspace синхронизация.
 - Полная совместимость со всеми фичами Tokens Studio.
+- Отдельная dev-выгрузка (CSS variables / resolved JSON) вне Figma plugin runtime.
+
+## Next Feature (post-MVP)
+
+- Добавить standalone transformer/CLI для разработчиков:
+  - вход: source JSON из плагина,
+  - выход: `tokens.css` (через `var(...)`) и `tokens.resolved.json`,
+  - поддержка gradient-токенов в frontend-friendly формате.
 
 ## Критерии успешного MVP
 

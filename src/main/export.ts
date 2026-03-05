@@ -105,12 +105,16 @@ export async function exportTokenFileFromLocalVariables(): Promise<ExportResult>
       if (variable.description && variable.description.trim().length > 0) {
         leaf.$description = variable.description;
       }
+      const clrExtensions: Record<string, unknown> = {};
       if (variable.hiddenFromPublishing) {
-        leaf.$extensions = {
-          clr: {
-            hideFromPublishing: true
-          }
-        };
+        clrExtensions.hideFromPublishing = true;
+      }
+      const scopes = variable.scopes.filter((scope) => scope !== "ALL_SCOPES");
+      if (scopes.length > 0) {
+        clrExtensions.scopes = scopes;
+      }
+      if (Object.keys(clrExtensions).length > 0) {
+        leaf.$extensions = { clr: clrExtensions };
       }
 
       const tokenPath = toJsonTokenPath(variable.name);

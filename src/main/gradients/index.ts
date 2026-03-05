@@ -49,6 +49,7 @@ type GradientPaintType =
   | "GRADIENT_ANGULAR"
   | "GRADIENT_DIAMOND";
 const PRODUCT_COLLECTION_HINTS = new Set(["pay", "plus", "pro", "savers", "split"]);
+const UNIFIED_COLLECTION_NAMES = new Set(["Common", "Core", "Product", "External"]);
 
 function toKebabSegment(value: string): string {
   return value
@@ -303,7 +304,7 @@ function flattenGradientNodes(
     const inferredFromPath = inferProductCollectionFromTokenPath(tokenPath);
     const inferredFromStyle = inferGradientLocationFromStyleName(styleName)?.collectionName;
     const metadataCollectionName =
-      collectionName === "Product" || collectionName === "External"
+      UNIFIED_COLLECTION_NAMES.has(collectionName)
         ? collectionName
         : inferredFromPath ?? inferredFromStyle ?? collectionName;
     flatTokens.push({
@@ -686,8 +687,8 @@ export async function appendGradientTokensFromLocalStyles(tokenFile: ClrTokenFil
     const parsed = parseStyleMetadata(style);
     const metadata = parsed.metadata;
     const inferred = inferGradientLocationFromStyleName(metadata?.styleName ?? style.name);
-    let collectionName = inferred?.collectionName ?? metadata?.collectionName ?? defaultCollectionName;
-    let tokenPath = inferred?.tokenPath ?? metadata?.tokenPath ?? toJsonTokenPath(style.name);
+    let collectionName = metadata?.collectionName ?? inferred?.collectionName ?? defaultCollectionName;
+    let tokenPath = metadata?.tokenPath ?? inferred?.tokenPath ?? toJsonTokenPath(style.name);
     const productCollectionMatch = collectionName.match(/^Product\.(.+)$/);
     if (productCollectionMatch && productCollectionMatch[1] && hasUnifiedProductCollection) {
       collectionName = "Product";

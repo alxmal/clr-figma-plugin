@@ -47,6 +47,13 @@
 - Полная синхронизация gradient styles: удаляются локальные gradient styles, отсутствующие во входном JSON.
 - Генерация документации по коллекциям токенов в отдельных фреймах.
 
+## Что планируется следующим шагом
+
+- Отдельный dev-export transformer (вне plugin runtime), который конвертирует source JSON в:
+  - `tokens.css` с CSS custom properties (`var(...)`),
+  - `tokens.resolved.json` с раскрытыми alias,
+  - frontend-friendly представление gradient-токенов.
+
 ## Рекомендованная структура для multi-product систем
 
 Для систем с несколькими продуктами (`Pay`, `Plus`, ...) используйте unified-коллекции:

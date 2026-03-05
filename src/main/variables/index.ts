@@ -18,6 +18,7 @@ interface FlatToken {
   type: VariableType;
   description: string;
   hideFromPublishing?: boolean;
+  scopes?: VariableScope[];
   valuesByModeName: Record<string, TokenPrimitive>;
 }
 
@@ -200,6 +201,60 @@ function readHideFromPublishingFlag(leaf: TokenLeaf, tokenPath: string): boolean
   return rawValue;
 }
 
+const ALLOWED_VARIABLE_SCOPES = new Set<VariableScope>([
+  "ALL_SCOPES",
+  "TEXT_CONTENT",
+  "CORNER_RADIUS",
+  "WIDTH_HEIGHT",
+  "GAP",
+  "ALL_FILLS",
+  "FRAME_FILL",
+  "SHAPE_FILL",
+  "TEXT_FILL",
+  "STROKE_COLOR",
+  "STROKE_FLOAT",
+  "EFFECT_FLOAT",
+  "EFFECT_COLOR",
+  "OPACITY",
+  "FONT_FAMILY",
+  "FONT_STYLE",
+  "FONT_WEIGHT",
+  "FONT_SIZE",
+  "LINE_HEIGHT",
+  "LETTER_SPACING",
+  "PARAGRAPH_SPACING",
+  "PARAGRAPH_INDENT"
+]);
+
+function readScopes(leaf: TokenLeaf, tokenPath: string): VariableScope[] | undefined {
+  const clrExtensions = leaf.$extensions?.clr;
+  if (typeof clrExtensions !== "object" || clrExtensions === null) {
+    return undefined;
+  }
+
+  const extensionRecord = clrExtensions as Record<string, unknown>;
+  const rawScopes = extensionRecord.scopes;
+  if (rawScopes === undefined) {
+    return undefined;
+  }
+  if (!Array.isArray(rawScopes)) {
+    throw new Error(`Token "${tokenPath}" has invalid "$extensions.clr.scopes" (expected array)`);
+  }
+
+  const scopes: VariableScope[] = [];
+  for (const rawScope of rawScopes) {
+    if (typeof rawScope !== "string" || !ALLOWED_VARIABLE_SCOPES.has(rawScope as VariableScope)) {
+      throw new Error(
+        `Token "${tokenPath}" has unsupported scope "${String(rawScope)}" in "$extensions.clr.scopes"`
+      );
+    }
+    if (!scopes.includes(rawScope as VariableScope)) {
+      scopes.push(rawScope as VariableScope);
+    }
+  }
+  return scopes;
+}
+
 export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promise<ImportResult> {
   const stats: ImportStats = {
     collections: 0,
@@ -221,6 +276,7 @@ export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promis
         type: mappedType,
         description: leaf.$description ?? "",
         hideFromPublishing: readHideFromPublishingFlag(leaf, tokenPath),
+        scopes: readScopes(leaf, tokenPath),
         valuesByModeName: normalizeValuesForModes(leaf.$value, collectionInput.modes, tokenPath)
       });
     });
@@ -276,6 +332,7 @@ export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promis
 
       variable.description = token.description;
       variable.hiddenFromPublishing = token.hideFromPublishing ?? false;
+      variable.scopes = token.scopes ?? ["ALL_SCOPES"];
       const variableKey = `${collectionInput.name}:${token.tokenPath}`;
       variablesByCollectionAndPath.set(variableKey, variable);
     }
