@@ -87,6 +87,21 @@ function Plugin() {
     emit<GenerateDocsHandler>("GENERATE_DOCS");
   }, []);
 
+  const handleCopyStatus = useCallback(function () {
+    const text = status.trim();
+    if (text.length === 0) {
+      return;
+    }
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setStatus("Status copied to clipboard.");
+      })
+      .catch(() => {
+        setStatus("Failed to copy status text.");
+      });
+  }, [status]);
+
   const handleSaveExport = useCallback(function () {
     if (exportJson.length === 0) {
       setStatus("Nothing to save. Run Export JSON first.");
@@ -157,6 +172,10 @@ function Plugin() {
       <VerticalSpace space="small" />
       <Text>Status</Text>
       <Text>{status}</Text>
+      <VerticalSpace space="extraSmall" />
+      <Button fullWidth secondary onClick={handleCopyStatus} disabled={isBusy}>
+        Copy status text
+      </Button>
 
       {exportJson.length > 0 ? (
         <div>

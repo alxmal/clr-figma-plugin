@@ -316,14 +316,16 @@ function createGradientValuePreview(value: GradientValue, dark: boolean, fillSty
   content.layoutMode = "HORIZONTAL";
   content.primaryAxisSizingMode = "AUTO";
   content.counterAxisSizingMode = "AUTO";
+  content.primaryAxisAlignItems = "MIN";
+  content.counterAxisAlignItems = "CENTER";
   content.itemSpacing = 8;
   content.fills = [];
   content.strokes = [];
 
   const preview = figma.createRectangle();
   preview.name = "Color";
-  preview.resize(60, 24);
-  preview.cornerRadius = 8;
+  preview.resize(40, 40);
+	preview.cornerRadius = 8;
   const stops: ColorStop[] = value.stops.map((stop) => {
     const parsed = tryHexToRgba(stop.color);
     const fallback = { r: 0.5, g: 0.5, b: 0.5, a: 1 };

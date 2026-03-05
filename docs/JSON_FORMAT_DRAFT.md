@@ -97,7 +97,7 @@
   },
   "$extensions": {
     "clr": {
-      "styleName": "gradient/bg/hero"
+      "styleName": "Pay.Gradients/bg/hero"
     }
   }
 }
@@ -137,7 +137,14 @@
 - Для mode-specific значений используется карта `$value[modeName]`.
 - Alias в `$value` преобразуется в alias/reference соответствующей переменной Figma.
 - `$type: "gradient"` маппится в Local Paint Styles:
-  - token path (`gradient.bg.hero`) -> имя стиля (по умолчанию `gradient/bg/hero`, либо `$extensions.clr.styleName`),
+  - token path (`gradient.bg.hero`) -> имя стиля (`$extensions.clr.styleName`),
+  - при отсутствии `styleName` применяется конвенция по имени коллекции:
+    - `Product.Pay` -> `Pay.Gradients/...`,
+    - `Product.Pro` -> `Pro.Gradients/...`,
+    - `Semantic.Pay` -> `Pay.Gradients/...`,
+    - `Semantic.Common` -> префикс не добавляется (или инферится продукт из пути, если возможно),
+    - `Core*` -> `Core.Gradients/...`,
+  - legacy имена (`Gradients/...`, `product/.../gradient/...`) нормализуются к конвенции при import/export,
   - `stop.position` (`0..100`) <-> `gradientStops[].position` (`0..1`),
   - literal stop color переносится как RGBA,
   - alias stop color разрешен в JSON и должен сохраняться при export/import без потери структуры.
@@ -145,9 +152,25 @@
 ## Политика синхронизации
 
 - JSON является единственным источником истины.
-- При импорте удаляются переменные в целевой коллекции, которых нет в текущем JSON.
-- При импорте удаляются локальные gradient styles в целевом scope, которых нет в JSON.
+- При импорте удаляются переменные и коллекции, которых нет в текущем JSON.
+- При импорте удаляются локальные gradient styles, которых нет в JSON.
 - Обновление должно быть идемпотентным: повторный импорт того же файла не создаёт лишних изменений.
+
+## Рекомендованная архитектура коллекций (multi-product)
+
+Если в одной дизайн-системе несколько продуктов (например `Pay`, `Plus`), рекомендуется:
+
+- держать mode для тем (`Light`, `Dark`, ...), а не для продуктов;
+- разделять коллекции по слоям:
+  - `Core` - primitives,
+  - `Product.<Name>` - брендовые/продуктовые токены,
+  - `Semantic.<Name>` - токены назначения в UI;
+- строить ссылки сверху вниз:
+  - `Semantic.<Name>` -> `Product.<Name>` / `Core`,
+  - `Product.<Name>` -> `Core`;
+- избегать циклических alias-цепочек между продуктами.
+
+См. рабочий шаблон: `examples/multi-product-tokens.json`.
 
 ## Ошибки валидации (базовые)
 

@@ -43,3 +43,27 @@
 ### Tooling
 
 - Базовый каркас переведён на `create-figma-plugin` для более стабильного Figma runtime/build workflow.
+
+## 2026-03-05
+
+### Multi-product collections
+
+- Для систем с несколькими продуктами используем отдельные коллекции `Product.*` и `Semantic.*`.
+- Продукт не моделируется через mode; mode оставляем для тем (`Light/Dark/...`).
+
+### Gradient style naming
+
+- Градиенты остаются токенами `$type: "gradient"` в JSON и материализуются в Local Paint Styles.
+- Нейминг styleName нормализуется по коллекции:
+  - `Product.<Name>` -> `<Name>.Gradients/...`
+  - `Semantic.<Name>` -> `<Name>.Gradients/...`
+  - `Semantic.Common` -> без верхней common-обёртки
+  - `Core*` -> `Core.Gradients/...`
+- Поддерживается обратная совместимость с legacy путями (`Gradients/...`, `product/.../gradient/...`) через нормализацию/инференс.
+
+### Import sync cleanup
+
+- `Apply JSON to Figma` выполняет полный sync:
+  - удаляет локальные variable collections, которых нет во входном JSON;
+  - удаляет локальные gradient styles, которых нет во входном JSON.
+- Цель: предсказуемое состояние файла после каждого импорта без "хвостов" от старой структуры.
