@@ -938,66 +938,121 @@
               "$type": "color",
               "$value": {
                 "HEX": "#FFFFFF"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "50": {
               "$type": "color",
               "$value": {
                 "HEX": "#F3F5F7"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "100": {
               "$type": "color",
               "$value": {
                 "HEX": "#EDEFF2"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#E1E3E8"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#B6B8BF"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#989CA6"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#777A85"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#505259"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#393B40"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "800": {
               "$type": "color",
               "$value": {
                 "HEX": "#2E2F33"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "900": {
               "$type": "color",
               "$value": {
                 "HEX": "#121214"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           },
@@ -1006,42 +1061,77 @@
               "$type": "color",
               "$value": {
                 "HEX": "#FDEBEB"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#FFD6D6"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#FF9999"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#FF4C52"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#E5434B"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#A63841"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#572930"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           },
@@ -1050,42 +1140,77 @@
               "$type": "color",
               "$value": {
                 "HEX": "#FFEDD1"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#FFDBBF"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#EDA77E"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#ED824C"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#C46031"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#8A4D34"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#572F24"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           },
@@ -1094,42 +1219,77 @@
               "$type": "color",
               "$value": {
                 "HEX": "#E1FAE7"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#C7F2D2"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#8DD9A0"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#56C776"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#2C9E56"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#2A7046"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#274536"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           },
@@ -1138,42 +1298,77 @@
               "$type": "color",
               "$value": {
                 "HEX": "#E1F7F4"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#C0F0E7"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#74D6C2"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#4AC2A8"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#37948C"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#2C6B69"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#1C3D3D"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           },
@@ -1182,42 +1377,77 @@
               "$type": "color",
               "$value": {
                 "HEX": "#E3F3FA"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#C3E9FA"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#71CBF0"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#24A8E0"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#188FC7"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#366387"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#364557"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           },
@@ -1226,42 +1456,77 @@
               "$type": "color",
               "$value": {
                 "HEX": "#EFEDF7"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#E2DFF5"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#B7B1E0"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#988EE5"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#766FC9"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#56557A"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#3A3A4F"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           },
@@ -1270,42 +1535,77 @@
               "$type": "color",
               "$value": {
                 "HEX": "#FAE9F6"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#F2DAED"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#E39DD5"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#CC7ACC"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#9961AD"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#6C4D80"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#3F2E4F"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           },
@@ -1314,42 +1614,77 @@
               "$type": "color",
               "$value": {
                 "HEX": "#FCF1C5"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "200": {
               "$type": "color",
               "$value": {
                 "HEX": "#FAEAA2"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "300": {
               "$type": "color",
               "$value": {
                 "HEX": "#FCD356"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "400": {
               "$type": "color",
               "$value": {
                 "HEX": "#F7AD19"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "500": {
               "$type": "color",
               "$value": {
                 "HEX": "#B27512"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "600": {
               "$type": "color",
               "$value": {
                 "HEX": "#7D5623"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             },
             "700": {
               "$type": "color",
               "$value": {
                 "HEX": "#524A39"
+              },
+              "$extensions": {
+                "clr": {
+                  "hideFromPublishing": true
+                }
               }
             }
           }

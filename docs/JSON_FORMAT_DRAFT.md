@@ -76,6 +76,9 @@
   - `$value` (либо одно значение, либо объект по режимам).
 - Alias/reference поддерживаются обязательно для MVP в формате `"{token.path}"`.
 - Для градиентов используется `$type: "gradient"` со структурированным `$value` (см. раздел ниже).
+- Для переменных поддерживается `"$extensions.clr.hideFromPublishing": true|false`:
+  - `true` -> в Figma для variable выставляется `hiddenFromPublishing = true`,
+  - `false` или отсутствие поля -> `hiddenFromPublishing = false`.
 
 ## Градиенты (`$type: gradient`)
 

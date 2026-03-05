@@ -46,26 +46,32 @@ function appendCollectionSections(
     collectionTitle.name = "Title";
     collectionFrame.appendChild(collectionTitle);
 
-    const bySection = new Map<string, FlatColorToken[]>();
+    const bySection = new Map<
+      string,
+      {
+        colors: FlatColorToken[];
+        gradients: FlatGradientToken[];
+      }
+    >();
+
     for (const token of colors) {
-      const list = bySection.get(token.sectionName) ?? [];
-      list.push(token);
-      bySection.set(token.sectionName, list);
+      const group = bySection.get(token.sectionName) ?? { colors: [], gradients: [] };
+      group.colors.push(token);
+      bySection.set(token.sectionName, group);
     }
 
-    const byGradientSection = new Map<string, FlatGradientToken[]>();
     for (const token of gradients) {
-      const list = byGradientSection.get(token.sectionName) ?? [];
-      list.push(token);
-      byGradientSection.set(token.sectionName, list);
+      const group = bySection.get(token.sectionName) ?? { colors: [], gradients: [] };
+      group.gradients.push(token);
+      bySection.set(token.sectionName, group);
     }
 
-    for (const [sectionName, rows] of Array.from(bySection.entries()).sort((a, b) =>
+    for (const [sectionName, group] of Array.from(bySection.entries()).sort((a, b) =>
       a[0].localeCompare(b[0])
     )) {
       const section = createSectionContainer(sectionName);
       section.appendChild(createHeaderRow(sectionName, collection.modes));
-      for (const token of rows.sort((a, b) => a.shortName.localeCompare(b.shortName))) {
+      for (const token of group.colors.sort((a, b) => a.shortName.localeCompare(b.shortName))) {
         section.appendChild(
           createColorRow(
             token,
@@ -77,27 +83,13 @@ function appendCollectionSections(
         );
         stats.colorRows += 1;
       }
+
+      for (const token of group.gradients.sort((a, b) => a.shortName.localeCompare(b.shortName))) {
+        section.appendChild(createGradientRow(token, collection.modes, gradientStyleIdByName));
+        stats.gradientRows += 1;
+      }
       collectionFrame.appendChild(section);
       stats.sections += 1;
-    }
-
-    if (byGradientSection.size > 0) {
-      const separator = createTextNode("Gradients", 18);
-      collectionFrame.appendChild(separator);
-
-      for (const [sectionName, rows] of Array.from(byGradientSection.entries()).sort((a, b) =>
-        a[0].localeCompare(b[0])
-      )) {
-        const title = `gradient.${sectionName}`;
-        const section = createSectionContainer(title);
-        section.appendChild(createHeaderRow(title, collection.modes));
-        for (const token of rows.sort((a, b) => a.shortName.localeCompare(b.shortName))) {
-          section.appendChild(createGradientRow(token, collection.modes, gradientStyleIdByName));
-          stats.gradientRows += 1;
-        }
-        collectionFrame.appendChild(section);
-        stats.sections += 1;
-      }
     }
   }
   return { stats, frames };

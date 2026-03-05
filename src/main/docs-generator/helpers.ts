@@ -121,6 +121,14 @@ export function flattenTokens(
         valuesByMode: normalizePrimitiveValuesByMode(leaf.$value, modeNames, tokenPath)
       });
     } else if (leaf.$type === "gradient") {
+      const gradientPathParts = [...leafPathParts];
+      if (gradientPathParts[0]?.toLowerCase() === "gradient") {
+        gradientPathParts.shift();
+      } else if (gradientPathParts[1]?.toLowerCase() === "gradient") {
+        gradientPathParts.splice(1, 1);
+      }
+      const gradientSectionName = gradientPathParts[0] ?? "General";
+      const gradientShortName = gradientPathParts.slice(1).join(".") || gradientSectionName;
       const clrExtensions = leaf.$extensions?.clr;
       const extensionStyleName =
         typeof clrExtensions === "object" && clrExtensions !== null
@@ -133,8 +141,8 @@ export function flattenTokens(
       gradients.push({
         collectionName,
         tokenPath,
-        sectionName,
-        shortName,
+        sectionName: gradientSectionName,
+        shortName: gradientShortName,
         styleName,
         valuesByMode: normalizeGradientValuesByMode(leaf.$value, modeNames, tokenPath)
       });

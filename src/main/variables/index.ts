@@ -17,6 +17,7 @@ interface FlatToken {
   variableName: string;
   type: VariableType;
   description: string;
+  hideFromPublishing?: boolean;
   valuesByModeName: Record<string, TokenPrimitive>;
 }
 
@@ -181,6 +182,24 @@ async function getVariablesByNameInCollection(collection: VariableCollection): P
   return new Map(collectionVariables.map((variable) => [variable.name, variable]));
 }
 
+function readHideFromPublishingFlag(leaf: TokenLeaf, tokenPath: string): boolean | undefined {
+  const clrExtensions = leaf.$extensions?.clr;
+  if (typeof clrExtensions !== "object" || clrExtensions === null) {
+    return undefined;
+  }
+  const extensionRecord = clrExtensions as Record<string, unknown>;
+  const rawValue = extensionRecord.hideFromPublishing;
+  if (rawValue === undefined) {
+    return undefined;
+  }
+  if (typeof rawValue !== "boolean") {
+    throw new Error(
+      `Token "${tokenPath}" has invalid "$extensions.clr.hideFromPublishing" (expected boolean)`
+    );
+  }
+  return rawValue;
+}
+
 export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promise<ImportResult> {
   const stats: ImportStats = {
     collections: 0,
@@ -201,6 +220,7 @@ export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promis
         variableName: toFigmaVariableName(tokenPath),
         type: mappedType,
         description: leaf.$description ?? "",
+        hideFromPublishing: readHideFromPublishingFlag(leaf, tokenPath),
         valuesByModeName: normalizeValuesForModes(leaf.$value, collectionInput.modes, tokenPath)
       });
     });
@@ -255,6 +275,7 @@ export async function upsertVariablesFromTokens(tokenFile: ClrTokenFile): Promis
       }
 
       variable.description = token.description;
+      variable.hiddenFromPublishing = token.hideFromPublishing ?? false;
       const variableKey = `${collectionInput.name}:${token.tokenPath}`;
       variablesByCollectionAndPath.set(variableKey, variable);
     }

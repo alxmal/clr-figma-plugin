@@ -105,6 +105,13 @@ export async function exportTokenFileFromLocalVariables(): Promise<ExportResult>
       if (variable.description && variable.description.trim().length > 0) {
         leaf.$description = variable.description;
       }
+      if (variable.hiddenFromPublishing) {
+        leaf.$extensions = {
+          clr: {
+            hideFromPublishing: true
+          }
+        };
+      }
 
       const tokenPath = toJsonTokenPath(variable.name);
       setTokenAtPath(tokens as Record<string, unknown>, tokenPath, leaf);
