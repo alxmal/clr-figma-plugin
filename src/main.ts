@@ -1,6 +1,7 @@
 import { emit, on, showUI } from "@create-figma-plugin/utilities";
 import type { ClrTokenFile } from "./shared/schema/tokens";
 import type {
+  ClearColorsHandler,
   ErrorHandler,
   ExportJsonHandler,
   ExportResultHandler,
@@ -61,6 +62,33 @@ export default function () {
       emit<StatusHandler>(
         "STATUS",
         `Docs generated: ${docsResult.sections} sections, ${docsResult.colorRows} color rows, ${docsResult.gradientRows} gradient rows.`
+      );
+    } catch (error) {
+      const messageText = error instanceof Error ? error.message : "Unknown plugin error";
+      emit<ErrorHandler>("ERROR", messageText);
+    }
+  });
+
+  on<ClearColorsHandler>("CLEAR_COLORS", async function () {
+    try {
+      const [localCollections, localVariables, localPaintStyles] = await Promise.all([
+        figma.variables.getLocalVariableCollectionsAsync(),
+        figma.variables.getLocalVariablesAsync(),
+        figma.getLocalPaintStylesAsync()
+      ]);
+
+      const variableCount = localVariables.length;
+      const styleCount = localPaintStyles.length;
+      for (const style of localPaintStyles) {
+        style.remove();
+      }
+      for (const collection of localCollections) {
+        collection.remove();
+      }
+
+      emit<StatusHandler>(
+        "STATUS",
+        `Cleared colors: ${variableCount} variables and ${styleCount} paint styles removed.`
       );
     } catch (error) {
       const messageText = error instanceof Error ? error.message : "Unknown plugin error";

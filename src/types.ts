@@ -15,6 +15,11 @@ export interface GenerateDocsHandler extends EventHandler {
   handler: () => void;
 }
 
+export interface ClearColorsHandler extends EventHandler {
+  name: "CLEAR_COLORS";
+  handler: () => void;
+}
+
 export interface StatusHandler extends EventHandler {
   name: "STATUS";
   handler: (message: string) => void;

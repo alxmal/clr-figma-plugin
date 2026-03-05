@@ -49,24 +49,25 @@
 
 ## Рекомендованная структура для multi-product систем
 
-Для систем с несколькими продуктами (`Pay`, `Plus`, ...) используйте слоистую модель:
+Для систем с несколькими продуктами (`Pay`, `Plus`, ...) используйте unified-коллекции:
 
+- `Common` - общая семантика (например `Fill`, `Typography`, aliases на базу).
 - `Core` - базовые primitives (palette, spacing, radius, typography scale).
-- `Product.*` - продуктовые брендовые токены (`Product.Pay`, `Product.Plus`).
-- `Semantic.*` - токены назначения для UI по продуктам (`Semantic.Pay`, `Semantic.Plus`).
+- `Product` - продуктовые токены в ветках (`Product.Pay`, `Product.Plus` внутри `tokens`).
+- `External` - внешние/партнерские ветки (`External.S7`, `External.X5` внутри `tokens`).
 
 Практические правила:
 
 - Продукт не должен быть mode (mode оставляем для `Light/Dark` и подобных тем).
 - Состояния (`hover/active/disabled`) задаются именами токенов, а не mode.
-- `Semantic` ссылается на `Product`/`Core`, `Product` при необходимости ссылается на `Core`.
+- `Common` ссылается на `Product`/`Core`, `Product` при необходимости ссылается на `Core`.
 - Градиенты хранятся как `$type: "gradient"` и маппятся в Local Paint Styles.
 - Рекомендуемый нейминг gradient styles:
-  - `Product.Pay` -> `Pay.Gradients/...`
-  - `Product.Pro` -> `Pro.Gradients/...`
-  - `Semantic.Pay` -> `Pay.Gradients/...`
-  - `Semantic.Common` -> без верхней "common" обёртки
-  - `Core*` -> `Core.Gradients/...`
+  - `Product.Pay` -> `Pay Gradients/...`
+  - `Product.Pro` -> `Pro Gradients/...`
+  - `External.S7` -> `S7 Gradients/...`
+  - `Core*` -> `Core Gradients/...`
+  - Legacy naming не поддерживается.
 
 Готовый шаблон: `examples/multi-product-tokens.json`.
 

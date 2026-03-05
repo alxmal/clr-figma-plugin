@@ -60,7 +60,10 @@ function toKebabSegment(value: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-function toCollectionSuffix(collectionName: string, prefix: "Product" | "Semantic"): string | null {
+function toCollectionSuffix(
+  collectionName: string,
+  prefix: "Product" | "Semantic" | "External"
+): string | null {
   const normalized = collectionName.trim();
   const match = normalized.match(new RegExp(`^${prefix}[.\\s-]+(.+)$`, "i"));
   if (!match || !match[1]) return null;
@@ -89,23 +92,35 @@ function inferProductFromTokenPath(tokenPath: string): string | null {
 
 function getStyleCollectionPrefix(collectionName: string, tokenPath: string): string | null {
   const productSuffix = toCollectionSuffix(collectionName, "Product");
-  if (productSuffix) return `${toPascalSegment(productSuffix)}.Gradients`;
+  if (productSuffix) return `${toPascalSegment(productSuffix)} Gradients`;
+
+  const externalSuffix = toCollectionSuffix(collectionName, "External");
+  if (externalSuffix) return `${toPascalSegment(externalSuffix)} Gradients`;
 
   const semanticSuffix = toCollectionSuffix(collectionName, "Semantic");
   if (semanticSuffix) {
     if (semanticSuffix === "common") {
       const inferredProduct = inferProductFromTokenPath(tokenPath);
-      return inferredProduct ? `${inferredProduct}.Gradients` : null;
+      return inferredProduct ? `${inferredProduct} Gradients` : null;
     }
-    return `${toPascalSegment(semanticSuffix)}.Gradients`;
+    return `${toPascalSegment(semanticSuffix)} Gradients`;
   }
 
   if (collectionName.trim().toLowerCase().startsWith("core")) {
-    return "Core.Gradients";
+    return "Core Gradients";
   }
 
   const inferredProduct = inferProductFromTokenPath(tokenPath);
-  return inferredProduct ? `${inferredProduct}.Gradients` : null;
+  return inferredProduct ? `${inferredProduct} Gradients` : null;
+}
+
+function getStyleGroupFromCollectionPrefix(collectionPrefix: string): string | null {
+  const groupedMatch = collectionPrefix.match(/^([^/]+?)\s+Gradients$/i);
+  return groupedMatch && groupedMatch[1] ? groupedMatch[1] : null;
+}
+
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function normalizeStylePath(path: string): string {
@@ -128,7 +143,7 @@ function buildConventionalStyleName(collectionName: string, tokenPath: string): 
   }
 
   if (!collectionPrefix) return tokenStylePath;
-  const styleGroup = collectionPrefix.match(/^([^/]+)\.Gradients$/i)?.[1];
+  const styleGroup = getStyleGroupFromCollectionPrefix(collectionPrefix);
   if (styleGroup && tokenSuffix.toLowerCase().startsWith(`${styleGroup.toLowerCase()}/`)) {
     tokenSuffix = tokenSuffix.slice(styleGroup.length + 1);
   }
@@ -154,7 +169,7 @@ function normalizeStyleNameByConvention(
   }
 
   let suffix = candidate;
-  const styleGroup = collectionPrefix.match(/^([^/]+)\.Gradients$/i)?.[1];
+  const styleGroup = getStyleGroupFromCollectionPrefix(collectionPrefix);
 
   if (suffix.toLowerCase().startsWith("gradients/")) {
     suffix = suffix.slice("gradients/".length);
@@ -163,42 +178,9 @@ function normalizeStyleNameByConvention(
     suffix = suffix.slice("gradient/".length);
   }
 
-  const legacyProductGradientsMatch = suffix.match(/^product-gradients\/([^/]+)\/(.+)$/i);
-  if (legacyProductGradientsMatch && legacyProductGradientsMatch[1] && legacyProductGradientsMatch[2]) {
-    if (styleGroup && legacyProductGradientsMatch[1].toLowerCase() === styleGroup.toLowerCase()) {
-      suffix = legacyProductGradientsMatch[2];
-    }
-  }
-
-  const legacySemanticGradientsMatch = suffix.match(/^semantic-gradients\/([^/]+)\/(.+)$/i);
-  if (legacySemanticGradientsMatch && legacySemanticGradientsMatch[1] && legacySemanticGradientsMatch[2]) {
-    if (styleGroup && legacySemanticGradientsMatch[1].toLowerCase() === styleGroup.toLowerCase()) {
-      suffix = legacySemanticGradientsMatch[2];
-    }
-  }
-
-  const legacyProductMatch = suffix.match(/^product\/([^/]+)\/gradient\/(.+)$/i);
-  if (legacyProductMatch && legacyProductMatch[1] && legacyProductMatch[2]) {
-    if (styleGroup && legacyProductMatch[1].toLowerCase() === styleGroup.toLowerCase()) {
-      suffix = legacyProductMatch[2];
-    }
-  }
-
-  const legacySemanticMatch = suffix.match(/^semantic\/([^/]+)\/gradient\/(.+)$/i);
-  if (legacySemanticMatch && legacySemanticMatch[1] && legacySemanticMatch[2]) {
-    if (styleGroup && legacySemanticMatch[1].toLowerCase() === styleGroup.toLowerCase()) {
-      suffix = legacySemanticMatch[2];
-    }
-  }
-
-  if (/^(common|core)-gradients\//i.test(suffix)) {
-    suffix = suffix.replace(/^(common|core)-gradients\//i, "");
-  }
-  if (/^(common|core)\/gradient\//i.test(suffix)) {
-    suffix = suffix.replace(/^(common|core)\/gradient\//i, "");
-  }
-  if (/^(common|core)\.gradients\//i.test(suffix)) {
-    suffix = suffix.replace(/^(common|core)\.gradients\//i, "");
+  if (styleGroup) {
+    const escapedStyleGroup = escapeRegex(styleGroup);
+    suffix = suffix.replace(new RegExp(`^${escapedStyleGroup}\\s+gradients/`, "i"), "");
   }
   if (styleGroup && suffix.toLowerCase().startsWith(`${styleGroup.toLowerCase()}/`)) {
     suffix = suffix.slice(styleGroup.length + 1);
@@ -223,77 +205,13 @@ function toPascalSegment(value: string): string {
 
 function inferGradientLocationFromStyleName(styleName: string): { collectionName: string; tokenPath: string } | null {
   const normalized = normalizeStylePath(styleName);
-  const groupedMatch = normalized.match(/^([^/]+)\.Gradients\/(.+)$/i);
+  const groupedMatch = normalized.match(/^([^/]+?)\s+Gradients\/(.+)$/i);
   if (groupedMatch && groupedMatch[1] && groupedMatch[2]) {
     const group = toPascalSegment(groupedMatch[1]);
     const collectionName = group.toLowerCase() === "core" ? "Core" : `Product.${group}`;
     return {
       collectionName,
       tokenPath: `gradient.${toJsonTokenPath(groupedMatch[2])}`
-    };
-  }
-
-  const productGradientsMatch = normalized.match(/^product-gradients\/([^/]+)\/(.+)$/i);
-  if (productGradientsMatch && productGradientsMatch[1] && productGradientsMatch[2]) {
-    return {
-      collectionName: `Product.${toPascalSegment(productGradientsMatch[1])}`,
-      tokenPath: `gradient.${toJsonTokenPath(productGradientsMatch[2])}`
-    };
-  }
-
-  const semanticGradientsMatch = normalized.match(/^semantic-gradients\/([^/]+)\/(.+)$/i);
-  if (semanticGradientsMatch && semanticGradientsMatch[1] && semanticGradientsMatch[2]) {
-    return {
-      collectionName: `Semantic.${toPascalSegment(semanticGradientsMatch[1])}`,
-      tokenPath: `gradient.${toJsonTokenPath(semanticGradientsMatch[2])}`
-    };
-  }
-
-  const commonGradientsMatch = normalized.match(/^common-gradients\/(.+)$/i);
-  if (commonGradientsMatch && commonGradientsMatch[1]) {
-    return {
-      collectionName: "Semantic.Common",
-      tokenPath: `gradient.${toJsonTokenPath(commonGradientsMatch[1])}`
-    };
-  }
-
-  const coreGradientsMatch = normalized.match(/^core-gradients\/(.+)$/i);
-  if (coreGradientsMatch && coreGradientsMatch[1]) {
-    return {
-      collectionName: "Core",
-      tokenPath: `gradient.${toJsonTokenPath(coreGradientsMatch[1])}`
-    };
-  }
-
-  const productMatch = normalized.match(/^product\/([^/]+)\/gradient\/(.+)$/i);
-  if (productMatch && productMatch[1] && productMatch[2]) {
-    return {
-      collectionName: `Product.${toPascalSegment(productMatch[1])}`,
-      tokenPath: `gradient.${toJsonTokenPath(productMatch[2])}`
-    };
-  }
-
-  const semanticMatch = normalized.match(/^semantic\/([^/]+)\/gradient\/(.+)$/i);
-  if (semanticMatch && semanticMatch[1] && semanticMatch[2]) {
-    return {
-      collectionName: `Semantic.${toPascalSegment(semanticMatch[1])}`,
-      tokenPath: `gradient.${toJsonTokenPath(semanticMatch[2])}`
-    };
-  }
-
-  const commonMatch = normalized.match(/^common\/gradient\/(.+)$/i);
-  if (commonMatch && commonMatch[1]) {
-    return {
-      collectionName: "Semantic.Common",
-      tokenPath: `gradient.${toJsonTokenPath(commonMatch[1])}`
-    };
-  }
-
-  const coreMatch = normalized.match(/^core\/gradient\/(.+)$/i);
-  if (coreMatch && coreMatch[1]) {
-    return {
-      collectionName: "Core",
-      tokenPath: `gradient.${toJsonTokenPath(coreMatch[1])}`
     };
   }
 
@@ -384,7 +302,10 @@ function flattenGradientNodes(
     const styleName = getStyleNameFromLeaf(collectionName, leaf, tokenPath);
     const inferredFromPath = inferProductCollectionFromTokenPath(tokenPath);
     const inferredFromStyle = inferGradientLocationFromStyleName(styleName)?.collectionName;
-    const metadataCollectionName = inferredFromPath ?? inferredFromStyle ?? collectionName;
+    const metadataCollectionName =
+      collectionName === "Product" || collectionName === "External"
+        ? collectionName
+        : inferredFromPath ?? inferredFromStyle ?? collectionName;
     flatTokens.push({
       collectionName,
       metadataCollectionName,
@@ -743,6 +664,8 @@ export async function appendGradientTokensFromLocalStyles(tokenFile: ClrTokenFil
   let gradients = 0;
 
   const byName = new Map(tokenFile.collections.map((collection) => [collection.name, collection]));
+  const hasUnifiedProductCollection = byName.has("Product");
+  const hasUnifiedExternalCollection = byName.has("External");
   const defaultModes = tokenFile.collections[0]?.modes ?? ["Default"];
   const defaultCollectionName = tokenFile.collections[0]?.name ?? "Local";
 
@@ -763,8 +686,18 @@ export async function appendGradientTokensFromLocalStyles(tokenFile: ClrTokenFil
     const parsed = parseStyleMetadata(style);
     const metadata = parsed.metadata;
     const inferred = inferGradientLocationFromStyleName(metadata?.styleName ?? style.name);
-    const collectionName = inferred?.collectionName ?? metadata?.collectionName ?? defaultCollectionName;
-    const tokenPath = inferred?.tokenPath ?? metadata?.tokenPath ?? toJsonTokenPath(style.name);
+    let collectionName = inferred?.collectionName ?? metadata?.collectionName ?? defaultCollectionName;
+    let tokenPath = inferred?.tokenPath ?? metadata?.tokenPath ?? toJsonTokenPath(style.name);
+    const productCollectionMatch = collectionName.match(/^Product\.(.+)$/);
+    if (productCollectionMatch && productCollectionMatch[1] && hasUnifiedProductCollection) {
+      collectionName = "Product";
+      tokenPath = `${toJsonTokenPath(productCollectionMatch[1])}.${tokenPath}`;
+    }
+    const externalCollectionMatch = collectionName.match(/^External\.(.+)$/);
+    if (externalCollectionMatch && externalCollectionMatch[1] && hasUnifiedExternalCollection) {
+      collectionName = "External";
+      tokenPath = `${toJsonTokenPath(externalCollectionMatch[1])}.${tokenPath}`;
+    }
     const styleName = normalizeStyleNameByConvention(
       collectionName,
       tokenPath,

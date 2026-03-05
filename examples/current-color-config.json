@@ -6,154 +6,12 @@
   },
   "collections": [
     {
-      "name": "Semantic.Common",
+      "name": "Common",
       "modes": [
         "Light",
         "Dark"
       ],
       "tokens": {
-        "Text & Icon": {
-          "Primary": {
-            "$type": "color",
-            "$value": {
-              "Light": "#000000DB",
-              "Dark": "#FFFFFFE0"
-            }
-          },
-          "Secondary": {
-            "$type": "color",
-            "$value": {
-              "Light": "#00000080",
-              "Dark": "#FFFFFF80"
-            }
-          },
-          "Tertiary": {
-            "$type": "color",
-            "$value": {
-              "Light": "#0000004D",
-              "Dark": "#FFFFFF59"
-            }
-          },
-          "Quaternary": {
-            "$type": "color",
-            "$value": {
-              "Light": "#00000033",
-              "Dark": "#FFFFFF40"
-            }
-          },
-          "Negative": {
-            "$type": "color",
-            "$value": {
-              "Light": "{Color.FillRamp.Color1-400}",
-              "Dark": "{Color.FillRamp.Color1-400}"
-            }
-          },
-          "Positive": {
-            "$type": "color",
-            "$value": {
-              "Light": "{Color.FillRamp.Color4-500}",
-              "Dark": "{Color.FillRamp.Color4-300}"
-            }
-          },
-          "Primary Inverted": {
-            "$type": "color",
-            "$value": {
-              "Light": "#FFFFFFFA",
-              "Dark": "#000000DB"
-            }
-          },
-          "Secondary Inverted": {
-            "$type": "color",
-            "$value": {
-              "Light": "#FFFFFFA6",
-              "Dark": "#00000080"
-            }
-          },
-          "Tertiary Inverted": {
-            "$type": "color",
-            "$value": {
-              "Light": "#FFFFFF73",
-              "Dark": "#0000004D"
-            }
-          },
-          "Quaternary Inverted": {
-            "$type": "color",
-            "$value": {
-              "Light": "#FFFFFF4D",
-              "Dark": "#00000033"
-            }
-          },
-          "Link Normal": {
-            "$type": "color",
-            "$value": {
-              "Light": "{Color.FillRamp.Color5-500}",
-              "Dark": "{Color.FillRamp.Color5-300}"
-            }
-          },
-          "Link Pressed": {
-            "$type": "color",
-            "$value": {
-              "Light": "{Color.FillRamp.Color5-400}",
-              "Dark": "{Color.FillRamp.Color5-400}"
-            }
-          },
-          "Primary Static": {
-            "$type": "color",
-            "$value": {
-              "Light": "#000000DB",
-              "Dark": "#000000DB"
-            }
-          },
-          "Secondary Static": {
-            "$type": "color",
-            "$value": {
-              "Light": "#00000080",
-              "Dark": "#00000080"
-            }
-          },
-          "Primary Static Inverted": {
-            "$type": "color",
-            "$value": {
-              "Light": "#FFFFFFFA",
-              "Dark": "#FFFFFFE0"
-            }
-          },
-          "Secondary Static Inverted": {
-            "$type": "color",
-            "$value": {
-              "Light": "#FFFFFFA6",
-              "Dark": "#FFFFFF80"
-            }
-          },
-          "Plus Solid": {
-            "$type": "color",
-            "$value": {
-              "Light": "#9F00D6B2",
-              "Dark": "#9F00D6E5"
-            }
-          },
-          "Warning": {
-            "$type": "color",
-            "$value": {
-              "Light": "{Color.FillRamp.Color2-500}",
-              "Dark": "{Color.FillRamp.Color2-500}"
-            }
-          },
-          "Warning Static": {
-            "$type": "color",
-            "$value": {
-              "Light": "#EDA77E",
-              "Dark": "#EDA77E"
-            }
-          },
-          "Quaternary Static Inverted": {
-            "$type": "color",
-            "$value": {
-              "Light": "#FFFFFF4D",
-              "Dark": "#FFFFFF40"
-            }
-          }
-        },
         "Fill": {
           "Default-0": {
             "$type": "color",
@@ -239,209 +97,381 @@
               "Dark": "#F5F7F9"
             }
           },
-          "Opacity Color7-600": {
+          "Color7-600-[40%]": {
             "$type": "color",
             "$value": {
               "Light": "#56557A66",
               "Dark": "#E2DFF566"
             }
-          }
-        },
-        "Product": {
-          "Loans": {
+          },
+          "Color1-100": {
             "$type": "color",
             "$value": {
-              "Light": "#FFF0BD",
-              "Dark": "#E6D8AB"
+              "Light": "{Color.Red.100}",
+              "Dark": "{Color.Red.100}"
             }
           },
-          "S7": {
+          "Color1-200": {
             "$type": "color",
             "$value": {
-              "Light": "#B5C506",
-              "Dark": "#B5C506"
+              "Light": "{Color.Red.200}",
+              "Dark": "{Color.Red.200}"
             }
           },
-          "Primary": {
+          "Color1-300": {
             "$type": "color",
             "$value": {
-              "Light": "#000000DB",
-              "Dark": "#FFFFFFE0"
+              "Light": "{Color.Red.300}",
+              "Dark": "{Color.Red.300}"
             }
           },
-          "Yandex Red": {
+          "Color1-400": {
             "$type": "color",
             "$value": {
-              "Light": "#FC3F1D",
-              "Dark": "#FC3F1D"
+              "Light": "{Color.Red.400}",
+              "Dark": "{Color.Red.400}"
             }
           },
-          "Mono Logo Inverted": {
+          "Color1-500": {
             "$type": "color",
             "$value": {
-              "Light": "#FFFFFF",
-              "Dark": "#000000"
+              "Light": "{Color.Red.500}",
+              "Dark": "{Color.Red.500}"
             }
           },
-          "Mono Logo": {
+          "Color1-600": {
             "$type": "color",
             "$value": {
-              "Light": "#000000",
-              "Dark": "#FFFFFF"
+              "Light": "{Color.Red.600}",
+              "Dark": "{Color.Red.600}"
             }
           },
-          "Pay Card Sticker": {
+          "Color2-100": {
             "$type": "color",
             "$value": {
-              "Light": "#40305F",
-              "Dark": "#40305F"
+              "Light": "{Color.Orange.100}",
+              "Dark": "{Color.Orange.100}"
             }
-          }
-        },
-        "Cards": {
-          "Pro Stroke": {
+          },
+          "Color2-200": {
             "$type": "color",
             "$value": {
-              "Light": "{Fill.Default-800}",
-              "Dark": "{Fill.Default-50}"
+              "Light": "{Color.Orange.200}",
+              "Dark": "{Color.Orange.200}"
             }
           },
-          "Plus Bg": {
+          "Color2-300": {
             "$type": "color",
             "$value": {
-              "Light": "{Fill.Default-0}",
-              "Dark": "{Fill.Default-900}"
+              "Light": "{Color.Orange.300}",
+              "Dark": "{Color.Orange.300}"
             }
           },
-          "Frozen Bg": {
+          "Color2-400": {
             "$type": "color",
             "$value": {
-              "Light": "{Fill.Empty}",
-              "Dark": "{Fill.Default-700}"
+              "Light": "{Color.Orange.400}",
+              "Dark": "{Color.Orange.400}"
             }
           },
-          "Pro Bg": {
+          "Color2-500": {
             "$type": "color",
             "$value": {
-              "Light": "{Fill.Default-900}",
-              "Dark": "{Fill.Default-50}"
-            }
-          }
-        },
-        "Shadow": {
-          "High": {
-            "X": {
-              "$type": "number",
-              "$value": {
-                "Light": 0,
-                "Dark": 0
-              }
-            },
-            "Y": {
-              "$type": "number",
-              "$value": {
-                "Light": 12,
-                "Dark": 12
-              }
-            },
-            "Blur": {
-              "$type": "number",
-              "$value": {
-                "Light": 52,
-                "Dark": 52
-              }
-            },
-            "Spread": {
-              "$type": "number",
-              "$value": {
-                "Light": 0,
-                "Dark": 0
-              }
-            },
-            "Color": {
-              "$type": "color",
-              "$value": {
-                "Light": "#2122242B",
-                "Dark": "#2122242B"
-              }
+              "Light": "{Color.Orange.500}",
+              "Dark": "{Color.Orange.500}"
             }
           },
-          "Medium": {
-            "X": {
-              "$type": "number",
-              "$value": {
-                "Light": 0,
-                "Dark": 0
-              }
-            },
-            "Y": {
-              "$type": "number",
-              "$value": {
-                "Light": 7,
-                "Dark": 7
-              }
-            },
-            "Blur": {
-              "$type": "number",
-              "$value": {
-                "Light": 23,
-                "Dark": 23
-              }
-            },
-            "Spread": {
-              "$type": "number",
-              "$value": {
-                "Light": 0,
-                "Dark": 0
-              }
-            },
-            "Color": {
-              "$type": "color",
-              "$value": {
-                "Light": "#2122242B",
-                "Dark": "#2E2F332B"
-              }
+          "Color2-600": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Orange.600}",
+              "Dark": "{Color.Orange.600}"
             }
           },
-          "Low": {
-            "X": {
-              "$type": "number",
-              "$value": {
-                "Light": 0,
-                "Dark": 0
-              }
-            },
-            "Y": {
-              "$type": "number",
-              "$value": {
-                "Light": 2,
-                "Dark": 2
-              }
-            },
-            "Blur": {
-              "$type": "number",
-              "$value": {
-                "Light": 5,
-                "Dark": 5
-              }
-            },
-            "Spread": {
-              "$type": "number",
-              "$value": {
-                "Light": 0,
-                "Dark": 0
-              }
-            },
-            "Color": {
-              "$type": "color",
-              "$value": {
-                "Light": "#2122242B",
-                "Dark": "#2E2F332B"
-              }
+          "Color3-100": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Yellow.100}",
+              "Dark": "{Color.Yellow.100}"
+            }
+          },
+          "Color3-200": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Yellow.200}",
+              "Dark": "{Color.Yellow.200}"
+            }
+          },
+          "Color3-300": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Yellow.300}",
+              "Dark": "{Color.Yellow.300}"
+            }
+          },
+          "Color3-400": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Yellow.400}",
+              "Dark": "{Color.Yellow.400}"
+            }
+          },
+          "Color3-500": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Yellow.500}",
+              "Dark": "{Color.Yellow.500}"
+            }
+          },
+          "Color3-600": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Yellow.600}",
+              "Dark": "{Color.Yellow.600}"
+            }
+          },
+          "Color4-100": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Green.100}",
+              "Dark": "{Color.Green.100}"
+            }
+          },
+          "Color4-200": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Green.200}",
+              "Dark": "{Color.Green.200}"
+            }
+          },
+          "Color4-300": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Green.300}",
+              "Dark": "{Color.Green.300}"
+            }
+          },
+          "Color4-400": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Green.400}",
+              "Dark": "{Color.Green.400}"
+            }
+          },
+          "Color4-500": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Green.500}",
+              "Dark": "{Color.Green.500}"
+            }
+          },
+          "Color4-600": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Green.600}",
+              "Dark": "{Color.Green.600}"
+            }
+          },
+          "Color5-100": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Cyan.100}",
+              "Dark": "{Color.Cyan.100}"
+            }
+          },
+          "Color5-200": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Cyan.200}",
+              "Dark": "{Color.Cyan.200}"
+            }
+          },
+          "Color5-300": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Cyan.300}",
+              "Dark": "{Color.Cyan.300}"
+            }
+          },
+          "Color5-400": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Cyan.400}",
+              "Dark": "{Color.Cyan.400}"
+            }
+          },
+          "Color5-500": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Cyan.500}",
+              "Dark": "{Color.Cyan.500}"
+            }
+          },
+          "Color5-600": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Cyan.600}",
+              "Dark": "{Color.Cyan.600}"
+            }
+          },
+          "Color6-100": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Blue.100}",
+              "Dark": "{Color.Blue.100}"
+            }
+          },
+          "Color6-200": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Blue.200}",
+              "Dark": "{Color.Blue.200}"
+            }
+          },
+          "Color6-300": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Blue.300}",
+              "Dark": "{Color.Blue.300}"
+            }
+          },
+          "Color6-400": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Blue.400}",
+              "Dark": "{Color.Blue.400}"
+            }
+          },
+          "Color6-500": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Blue.500}",
+              "Dark": "{Color.Blue.500}"
+            }
+          },
+          "Color6-600": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Blue.600}",
+              "Dark": "{Color.Blue.600}"
+            }
+          },
+          "Color7-100": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Violet.100}",
+              "Dark": "{Color.Violet.100}"
+            }
+          },
+          "Color7-200": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Violet.200}",
+              "Dark": "{Color.Violet.200}"
+            }
+          },
+          "Color7-300": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Violet.300}",
+              "Dark": "{Color.Violet.300}"
+            }
+          },
+          "Color7-400": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Violet.400}",
+              "Dark": "{Color.Violet.400}"
+            }
+          },
+          "Color7-500": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Violet.500}",
+              "Dark": "{Color.Violet.500}"
+            }
+          },
+          "Color7-600": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Violet.600}",
+              "Dark": "{Color.Violet.600}"
+            }
+          },
+          "Color8-100": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Purple.100}",
+              "Dark": "{Color.Purple.100}"
+            }
+          },
+          "Color8-200": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Purple.200}",
+              "Dark": "{Color.Purple.200}"
+            }
+          },
+          "Color8-300": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Purple.300}",
+              "Dark": "{Color.Purple.300}"
+            }
+          },
+          "Color8-400": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Purple.400}",
+              "Dark": "{Color.Purple.400}"
+            }
+          },
+          "Color8-500": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Purple.500}",
+              "Dark": "{Color.Purple.500}"
+            }
+          },
+          "Color8-600": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Color.Purple.600}",
+              "Dark": "{Color.Purple.600}"
             }
           }
         },
         "Components": {
+          "Cards": {
+            "Pro Stroke": {
+              "$type": "color",
+              "$value": {
+                "Light": "{Fill.Default-800}",
+                "Dark": "{Fill.Default-50}"
+              }
+            },
+            "Plus Bg": {
+              "$type": "color",
+              "$value": {
+                "Light": "{Fill.Default-0}",
+                "Dark": "{Fill.Default-900}"
+              }
+            },
+            "Frozen Bg": {
+              "$type": "color",
+              "$value": {
+                "Light": "{Fill.Empty}",
+                "Dark": "{Fill.Default-700}"
+              }
+            },
+            "Pro Bg": {
+              "$type": "color",
+              "$value": {
+                "Light": "{Fill.Default-900}",
+                "Dark": "{Fill.Default-50}"
+              }
+            }
+          },
           "Badge": {
             "Soon Bg": {
               "$type": "color",
@@ -453,8 +483,8 @@
             "Soon Text": {
               "$type": "color",
               "$value": {
-                "Light": "{Text & Icon.Primary}",
-                "Dark": "{Text & Icon.Primary Inverted}"
+                "Light": "{Typography.Primary}",
+                "Dark": "{Typography.Primary Inverted}"
               }
             }
           },
@@ -638,858 +668,266 @@
               }
             }
           }
-        }
-      }
-    },
-    {
-      "name": "Product.Savers",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "tokens": {
-        "Product": {
-          "Savers": {
-            "Base": {
-              "$type": "color",
+        },
+        "Shadow": {
+          "High": {
+            "X": {
+              "$type": "number",
               "$value": {
-                "Light": "#DCE8FB",
-                "Dark": "#DCE8FB"
+                "Light": 0,
+                "Dark": 0
               }
             },
-            "Background": {
-              "Theme 1": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#EBEFF1",
-                  "Dark": "#1C1E23"
-                }
-              },
-              "Theme 2": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#E3F2FB",
-                  "Dark": "#171C25"
-                }
-              },
-              "Theme 3": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#F5E2EE",
-                  "Dark": "#241413"
-                }
-              },
-              "Theme 4": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#EAEDF9",
-                  "Dark": "#211D28"
-                }
-              },
-              "Theme 5": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#D6EDEB",
-                  "Dark": "#161E1F"
-                }
+            "Y": {
+              "$type": "number",
+              "$value": {
+                "Light": 12,
+                "Dark": 12
+              }
+            },
+            "Blur": {
+              "$type": "number",
+              "$value": {
+                "Light": 52,
+                "Dark": 52
+              }
+            },
+            "Spread": {
+              "$type": "number",
+              "$value": {
+                "Light": 0,
+                "Dark": 0
+              }
+            },
+            "Color": {
+              "$type": "color",
+              "$value": {
+                "Light": "#2122242B",
+                "Dark": "#2122242B"
+              }
+            }
+          },
+          "Medium": {
+            "X": {
+              "$type": "number",
+              "$value": {
+                "Light": 0,
+                "Dark": 0
+              }
+            },
+            "Y": {
+              "$type": "number",
+              "$value": {
+                "Light": 7,
+                "Dark": 7
+              }
+            },
+            "Blur": {
+              "$type": "number",
+              "$value": {
+                "Light": 23,
+                "Dark": 23
+              }
+            },
+            "Spread": {
+              "$type": "number",
+              "$value": {
+                "Light": 0,
+                "Dark": 0
+              }
+            },
+            "Color": {
+              "$type": "color",
+              "$value": {
+                "Light": "#2122242B",
+                "Dark": "#2E2F332B"
+              }
+            }
+          },
+          "Low": {
+            "X": {
+              "$type": "number",
+              "$value": {
+                "Light": 0,
+                "Dark": 0
+              }
+            },
+            "Y": {
+              "$type": "number",
+              "$value": {
+                "Light": 2,
+                "Dark": 2
+              }
+            },
+            "Blur": {
+              "$type": "number",
+              "$value": {
+                "Light": 5,
+                "Dark": 5
+              }
+            },
+            "Spread": {
+              "$type": "number",
+              "$value": {
+                "Light": 0,
+                "Dark": 0
+              }
+            },
+            "Color": {
+              "$type": "color",
+              "$value": {
+                "Light": "#2122242B",
+                "Dark": "#2E2F332B"
               }
             }
           }
         },
-        "gradient": {
-          "Chart Line Primary": {
-            "$type": "gradient",
+        "Typography": {
+          "Primary": {
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 0,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#988EE5"
-                },
-                {
-                  "position": 100,
-                  "color": "#56557A"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Savers.Gradients/Chart Line Primary"
-              }
+              "Light": "#000000DB",
+              "Dark": "#FFFFFFE0"
             }
           },
-          "Chart Line Secondary": {
-            "$type": "gradient",
+          "Secondary": {
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 360,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#EDEFF2"
-                },
-                {
-                  "position": 100,
-                  "color": "#E1E3E8"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Savers.Gradients/Chart Line Secondary"
-              }
+              "Light": "#00000080",
+              "Dark": "#FFFFFF80"
             }
           },
-          "Chart Fill Primary": {
-            "$type": "gradient",
+          "Tertiary": {
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 270,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#E2DFF5"
-                },
-                {
-                  "position": 100,
-                  "color": "#E2DFF500",
-                  "opacity": 0
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Savers.Gradients/Chart Fill Primary"
-              }
+              "Light": "#0000004D",
+              "Dark": "#FFFFFF59"
             }
           },
-          "Chart Fill Secondary": {
-            "$type": "gradient",
+          "Quaternary": {
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 270,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#F5F7F9"
-                },
-                {
-                  "position": 100,
-                  "color": "#F5F7F900",
-                  "opacity": 0
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Savers.Gradients/Chart Fill Secondary"
-              }
-            }
-          },
-          "Savers Product Card": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 321.49,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#188FC700",
-                  "opacity": 0
-                },
-                {
-                  "position": 100,
-                  "color": "#188FC733",
-                  "opacity": 0.2
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Savers.Gradients/Savers Product Card"
-              }
-            },
-            "$description": "Карточка продукта на главной"
-          }
-        }
-      }
-    },
-    {
-      "name": "Product.Split",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "tokens": {
-        "Product": {
-          "Split": {
-            "Default Old": {
-              "$type": "color",
-              "$value": {
-                "Light": "#B9F3BC",
-                "Dark": "#A7DBAA"
-              }
-            },
-            "Pink Product Light": {
-              "$type": "color",
-              "$value": {
-                "Light": "#FF7197",
-                "Dark": "#FF7197"
-              }
-            },
-            "Green Product Light": {
-              "$type": "color",
-              "$value": {
-                "Light": "#C1F79B",
-                "Dark": "#C1F79B"
-              }
-            },
-            "Green Product Deep": {
-              "$type": "color",
-              "$value": {
-                "Light": "#9FF067",
-                "Dark": "#9FF067"
-              }
-            },
-            "Pink Product Deep": {
-              "$type": "color",
-              "$value": {
-                "Light": "#FC5B86",
-                "Dark": "#FC5B86"
-              }
-            },
-            "Green": {
-              "Green-200": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#D9FCC0",
-                  "Dark": "#365C1C"
-                }
-              },
-              "Green-300": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#C1F79B",
-                  "Dark": "#48871B"
-                }
-              },
-              "Green-400": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#9FF067",
-                  "Dark": "#9FF067"
-                }
-              },
-              "Green-500": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#63D115",
-                  "Dark": "#C1F79B"
-                }
-              },
-              "Green-600": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#3D9400",
-                  "Dark": "#D9FCC0"
-                }
-              },
-              "Green-100": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#E7FCD9",
-                  "Dark": "#223B12"
-                }
-              }
-            },
-            "Pink": {
-              "Pink-100": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#FFE0E7",
-                  "Dark": "#7F1934"
-                }
-              },
-              "Pink-200": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#FEB3C3",
-                  "Dark": "#A6173D"
-                }
-              },
-              "Pink-300": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#FF7197",
-                  "Dark": "#D62957"
-                }
-              },
-              "Pink-400": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#FC5B86",
-                  "Dark": "#FC5B86"
-                }
-              },
-              "Pink-500": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#D62957",
-                  "Dark": "#FF7197"
-                }
-              },
-              "Pink-600": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#A6173D",
-                  "Dark": "#FEB3C3"
-                }
-              }
-            }
-          }
-        },
-        "gradient": {
-          "Default Dark": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 163.43,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#55D48E"
-                },
-                {
-                  "position": 100,
-                  "color": "#ABEDC9"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Split.Gradients/Default Dark"
-              }
-            }
-          },
-          "Default Light": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 93.41,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#55D48E"
-                },
-                {
-                  "position": 100,
-                  "color": "#ABEDC9"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Split.Gradients/Default Light"
-              }
-            }
-          },
-          "Positive": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 180,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#55D48E"
-                },
-                {
-                  "position": 100,
-                  "color": "#ADEBC9"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Split.Gradients/Positive"
-              }
+              "Light": "#00000033",
+              "Dark": "#FFFFFF40"
             }
           },
           "Negative": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 180,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FF4C52"
-                },
-                {
-                  "position": 100,
-                  "color": "#FFD6D6"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Split.Gradients/Negative"
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "name": "Product.Plus",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "tokens": {
-        "Product": {
-          "Plus": {
-            "Plus Points": {
-              "$type": "color",
-              "$value": {
-                "Light": "#E4CBFF",
-                "Dark": "#CEB7E6"
-              }
-            },
-            "Plus Solid": {
-              "$type": "color",
-              "$value": {
-                "Light": "#9F00D614",
-                "Dark": "#9F00D640"
-              }
-            }
-          }
-        },
-        "gradient": {
-          "Default": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 0,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FF5C4D"
-                },
-                {
-                  "position": 30,
-                  "color": "#EB469F"
-                },
-                {
-                  "position": 75,
-                  "color": "#8341EF"
-                },
-                {
-                  "position": 100,
-                  "color": "#3F68F9"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Plus.Gradients/Default"
-              }
-            }
-          },
-          "Glyph": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 360,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FF5C4D"
-                },
-                {
-                  "position": 40,
-                  "color": "#EB469F"
-                },
-                {
-                  "position": 100,
-                  "color": "#8341EF"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Plus.Gradients/Glyph"
-              }
-            }
-          },
-          "Card": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 360,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FF5C4D"
-                },
-                {
-                  "position": 40,
-                  "color": "#EB469F"
-                },
-                {
-                  "position": 100,
-                  "color": "#8341EF"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Plus.Gradients/Card"
-              }
-            }
-          },
-          "Points": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 360,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FE7367"
-                },
-                {
-                  "position": 40,
-                  "color": "#EB469F"
-                },
-                {
-                  "position": 100,
-                  "color": "#945CF0"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Plus.Gradients/Points"
-              }
-            }
-          },
-          "Text": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 360,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#8341EF"
-                },
-                {
-                  "position": 100,
-                  "color": "#3F68F9"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Plus.Gradients/Text"
-              }
-            }
-          },
-          "Stroke": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 360,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FF5C4D"
-                },
-                {
-                  "position": 40,
-                  "color": "#EB469F"
-                },
-                {
-                  "position": 100,
-                  "color": "#8341EF"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Plus.Gradients/Stroke"
-              }
-            }
-          },
-          "Blur": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "angular",
-              "angle": 0,
-              "stops": [
-                {
-                  "position": 43.22,
-                  "color": "#FFA78A"
-                },
-                {
-                  "position": 74.41,
-                  "color": "#F07CE500",
-                  "opacity": 0
-                },
-                {
-                  "position": 99.98,
-                  "color": "#AD74FF"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Plus.Gradients/Blur"
-              }
-            }
-          },
-          "Plus Product Card": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 321.49,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#9961AD00",
-                  "opacity": 0
-                },
-                {
-                  "position": 100,
-                  "color": "#9961AD33",
-                  "opacity": 0.2
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Plus.Gradients/Plus Product Card"
-              }
-            },
-            "$description": "Карточка продукта на главной"
-          }
-        }
-      }
-    },
-    {
-      "name": "Product.Pay",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "tokens": {
-        "Product": {
-          "Pay": {
-            "Fill": {
-              "Sunrise": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#E2C1F9",
-                  "Dark": "#E2C1F9"
-                }
-              },
-              "Sunset": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#FFB1D4",
-                  "Dark": "#FFB1D4"
-                }
-              },
-              "Sunshine": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#FBFFE4",
-                  "Dark": "#FBFFE4"
-                }
-              },
-              "Blue Sky": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#B6CFF7",
-                  "Dark": "#B6CFF7"
-                }
-              },
-              "Base Black": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#170023",
-                  "Dark": "#170023"
-                }
-              },
-              "Yandex Red 2": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#F8604A",
-                  "Dark": "#F8604A"
-                }
-              },
-              "Pay Black": {
-                "$type": "color",
-                "$value": {
-                  "Light": "#242424",
-                  "Dark": "#FFFFFF"
-                }
-              }
-            }
-          },
-          "Pay Card Sticker": {
             "$type": "color",
             "$value": {
-              "Light": "#40305F",
-              "Dark": "#40305F"
-            }
-          }
-        },
-        "gradient": {
-          "Card Fill Radial": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "radial",
-              "angle": 41.08,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#E2C1F9"
-                },
-                {
-                  "position": 33,
-                  "color": "#FEBECE"
-                },
-                {
-                  "position": 66,
-                  "color": "#FBFFE4"
-                },
-                {
-                  "position": 100,
-                  "color": "#B6CFF7"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Pay.Gradients/Card Fill Radial"
-              }
+              "Light": "{Fill.Color1-400}",
+              "Dark": "{Fill.Color1-400}"
             }
           },
-          "Card Fill Diamond": {
-            "$type": "gradient",
+          "Positive": {
+            "$type": "color",
             "$value": {
-              "kind": "angular",
-              "angle": 83.47,
-              "stops": [
-                {
-                  "position": 11,
-                  "color": "#F6FCA5ED",
-                  "opacity": 0.93
-                },
-                {
-                  "position": 14.17,
-                  "color": "#E9CAF9A3",
-                  "opacity": 0.64
-                },
-                {
-                  "position": 17.34,
-                  "color": "#A9BBE8CC",
-                  "opacity": 0.8
-                },
-                {
-                  "position": 94.06,
-                  "color": "#CDA1EFE0",
-                  "opacity": 0.88
-                },
-                {
-                  "position": 99.88,
-                  "color": "#EC90D1FC",
-                  "opacity": 0.99
-                },
-                {
-                  "position": 100,
-                  "color": "#FB19E1"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Pay.Gradients/Card Fill Diamond"
-              }
+              "Light": "{Fill.Color4-500}",
+              "Dark": "{Fill.Color4-300}"
             }
           },
-          "Card Border": {
-            "$type": "gradient",
+          "Primary Inverted": {
+            "$type": "color",
             "$value": {
-              "kind": "radial",
-              "angle": 298.36,
-              "stops": [
-                {
-                  "position": 8.17,
-                  "color": "#FEBECE"
-                },
-                {
-                  "position": 26.76,
-                  "color": "#C6DEFD"
-                },
-                {
-                  "position": 53.96,
-                  "color": "#F1D3DB"
-                },
-                {
-                  "position": 80.68,
-                  "color": "#E4D8C4"
-                },
-                {
-                  "position": 100,
-                  "color": "#7693DD"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Pay.Gradients/Card Border"
-              }
+              "Light": "#FFFFFFFA",
+              "Dark": "#000000DB"
             }
           },
-          "Sticker": {
-            "$type": "gradient",
+          "Secondary Inverted": {
+            "$type": "color",
             "$value": {
-              "kind": "angular",
-              "angle": 171.13,
-              "stops": [
-                {
-                  "position": 9.63,
-                  "color": "#B6D0F7"
-                },
-                {
-                  "position": 25.62,
-                  "color": "#FBFFE4"
-                },
-                {
-                  "position": 51.92,
-                  "color": "#FFABC4"
-                },
-                {
-                  "position": 82.69,
-                  "color": "#E2C1F9"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Pay.Gradients/Sticker"
-              }
+              "Light": "#FFFFFFA6",
+              "Dark": "#00000080"
+            }
+          },
+          "Tertiary Inverted": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FFFFFF73",
+              "Dark": "#0000004D"
+            }
+          },
+          "Quaternary Inverted": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FFFFFF4D",
+              "Dark": "#00000033"
+            }
+          },
+          "Link Normal": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Fill.Color5-500}",
+              "Dark": "{Fill.Color5-300}"
+            }
+          },
+          "Link Pressed": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Fill.Color5-400}",
+              "Dark": "{Fill.Color5-400}"
+            }
+          },
+          "Primary Static": {
+            "$type": "color",
+            "$value": {
+              "Light": "#000000DB",
+              "Dark": "#000000DB"
+            }
+          },
+          "Secondary Static": {
+            "$type": "color",
+            "$value": {
+              "Light": "#00000080",
+              "Dark": "#00000080"
+            }
+          },
+          "Primary Static Inverted": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FFFFFFFA",
+              "Dark": "#FFFFFFE0"
+            }
+          },
+          "Secondary Static Inverted": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FFFFFFA6",
+              "Dark": "#FFFFFF80"
+            }
+          },
+          "Plus Solid": {
+            "$type": "color",
+            "$value": {
+              "Light": "#9F00D6B2",
+              "Dark": "#9F00D6E5"
+            }
+          },
+          "Warning": {
+            "$type": "color",
+            "$value": {
+              "Light": "{Fill.Color2-500}",
+              "Dark": "{Fill.Color2-500}"
+            }
+          },
+          "Warning Static": {
+            "$type": "color",
+            "$value": {
+              "Light": "#EDA77E",
+              "Dark": "#EDA77E"
+            }
+          },
+          "Quaternary Static Inverted": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FFFFFF4D",
+              "Dark": "#FFFFFF40"
             }
           }
         }
       }
     },
     {
-      "name": "Core.Base",
+      "name": "Core",
       "modes": [
         "HEX"
       ],
@@ -1914,525 +1352,1046 @@
                 "HEX": "#524A39"
               }
             }
-          },
-          "FillRamp": {
-            "Color1-100": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Red.100}"
-              }
-            },
-            "Color1-200": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Red.200}"
-              }
-            },
-            "Color1-300": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Red.300}"
-              }
-            },
-            "Color1-400": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Red.400}"
-              }
-            },
-            "Color1-500": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Red.500}"
-              }
-            },
-            "Color1-600": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Red.600}"
-              }
-            },
-            "Color2-100": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Orange.100}"
-              }
-            },
-            "Color2-200": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Orange.200}"
-              }
-            },
-            "Color2-300": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Orange.300}"
-              }
-            },
-            "Color2-400": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Orange.400}"
-              }
-            },
-            "Color2-500": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Orange.500}"
-              }
-            },
-            "Color2-600": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Orange.600}"
-              }
-            },
-            "Color3-100": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Yellow.100}"
-              }
-            },
-            "Color3-200": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Yellow.200}"
-              }
-            },
-            "Color3-300": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Yellow.300}"
-              }
-            },
-            "Color3-400": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Yellow.400}"
-              }
-            },
-            "Color3-500": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Yellow.500}"
-              }
-            },
-            "Color3-600": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Yellow.600}"
-              }
-            },
-            "Color4-100": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Green.100}"
-              }
-            },
-            "Color4-200": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Green.200}"
-              }
-            },
-            "Color4-300": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Green.300}"
-              }
-            },
-            "Color4-400": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Green.400}"
-              }
-            },
-            "Color4-500": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Green.500}"
-              }
-            },
-            "Color4-600": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Green.600}"
-              }
-            },
-            "Color5-100": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Cyan.100}"
-              }
-            },
-            "Color5-200": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Cyan.200}"
-              }
-            },
-            "Color5-300": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Cyan.300}"
-              }
-            },
-            "Color5-400": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Cyan.400}"
-              }
-            },
-            "Color5-500": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Cyan.500}"
-              }
-            },
-            "Color5-600": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Cyan.600}"
-              }
-            },
-            "Color6-100": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Blue.100}"
-              }
-            },
-            "Color6-200": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Blue.200}"
-              }
-            },
-            "Color6-300": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Blue.300}"
-              }
-            },
-            "Color6-400": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Blue.400}"
-              }
-            },
-            "Color6-500": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Blue.500}"
-              }
-            },
-            "Color6-600": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Blue.600}"
-              }
-            },
-            "Color7-100": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Violet.100}"
-              }
-            },
-            "Color7-200": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Violet.200}"
-              }
-            },
-            "Color7-300": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Violet.300}"
-              }
-            },
-            "Color7-400": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Violet.400}"
-              }
-            },
-            "Color7-500": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Violet.500}"
-              }
-            },
-            "Color7-600": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Violet.600}"
-              }
-            },
-            "Color8-100": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Purple.100}"
-              }
-            },
-            "Color8-200": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Purple.200}"
-              }
-            },
-            "Color8-300": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Purple.300}"
-              }
-            },
-            "Color8-400": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Purple.400}"
-              }
-            },
-            "Color8-500": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Purple.500}"
-              }
-            },
-            "Color8-600": {
-              "$type": "color",
-              "$value": {
-                "HEX": "{Color.Purple.600}"
-              }
-            }
           }
         }
       }
     },
     {
-      "name": "Product.Pro",
+      "name": "Product",
       "modes": [
         "Light",
         "Dark"
       ],
       "tokens": {
-        "gradient": {
+        "Savers": {
           "Base": {
-            "$type": "gradient",
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 360,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#3B3C40"
-                },
-                {
-                  "position": 100,
-                  "color": "#2F3033"
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Pro.Gradients/Base"
-              }
+              "Light": "#DCE8FB",
+              "Dark": "#DCE8FB"
             }
-          }
-        }
-      }
-    },
-    {
-      "name": "Product.Background",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "tokens": {
-        "gradient": {
-          "Muted": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 270,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FFFFFF00",
-                  "opacity": 0
-                },
-                {
-                  "position": 55,
-                  "color": "#FFFFFF"
-                }
-              ]
+          },
+          "Background": {
+            "Theme 1": {
+              "$type": "color",
+              "$value": {
+                "Light": "#EBEFF1",
+                "Dark": "#1C1E23"
+              }
             },
-            "$extensions": {
-              "clr": {
-                "styleName": "Background.Gradients/Muted"
+            "Theme 2": {
+              "$type": "color",
+              "$value": {
+                "Light": "#E3F2FB",
+                "Dark": "#171C25"
+              }
+            },
+            "Theme 3": {
+              "$type": "color",
+              "$value": {
+                "Light": "#F5E2EE",
+                "Dark": "#241413"
+              }
+            },
+            "Theme 4": {
+              "$type": "color",
+              "$value": {
+                "Light": "#EAEDF9",
+                "Dark": "#211D28"
+              }
+            },
+            "Theme 5": {
+              "$type": "color",
+              "$value": {
+                "Light": "#D6EDEB",
+                "Dark": "#161E1F"
               }
             }
           },
-          "HSGradient": {
-            "$type": "gradient",
-            "$value": {
-              "kind": "linear",
-              "angle": 270,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FFFFFF"
-                },
-                {
-                  "position": 100,
-                  "color": "#EDEFF2"
+          "gradient": {
+            "Chart Line Primary": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 0,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#988EE5"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#56557A"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Savers Gradients/Chart Line Primary"
                 }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Background.Gradients/HSGradient"
               }
+            },
+            "Chart Line Secondary": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 360,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#EDEFF2"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#E1E3E8"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Savers Gradients/Chart Line Secondary"
+                }
+              }
+            },
+            "Chart Fill Primary": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 270,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#E2DFF5"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#E2DFF500",
+                    "opacity": 0
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Savers Gradients/Chart Fill Primary"
+                }
+              }
+            },
+            "Chart Fill Secondary": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 270,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#F5F7F9"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#F5F7F900",
+                    "opacity": 0
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Savers Gradients/Chart Fill Secondary"
+                }
+              }
+            },
+            "Savers Product Card": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 321.49,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#188FC700",
+                    "opacity": 0
+                  },
+                  {
+                    "position": 100,
+                    "color": "#188FC733",
+                    "opacity": 0.2
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Savers Gradients/Savers Product Card"
+                }
+              },
+              "$description": "Карточка продукта на главной"
+            }
+          }
+        },
+        "Split": {
+          "Default Old": {
+            "$type": "color",
+            "$value": {
+              "Light": "#B9F3BC",
+              "Dark": "#A7DBAA"
+            }
+          },
+          "Pink Product Light": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FF7197",
+              "Dark": "#FF7197"
+            }
+          },
+          "Green Product Light": {
+            "$type": "color",
+            "$value": {
+              "Light": "#C1F79B",
+              "Dark": "#C1F79B"
+            }
+          },
+          "Green Product Deep": {
+            "$type": "color",
+            "$value": {
+              "Light": "#9FF067",
+              "Dark": "#9FF067"
+            }
+          },
+          "Pink Product Deep": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FC5B86",
+              "Dark": "#FC5B86"
+            }
+          },
+          "Green": {
+            "Green-200": {
+              "$type": "color",
+              "$value": {
+                "Light": "#D9FCC0",
+                "Dark": "#365C1C"
+              }
+            },
+            "Green-300": {
+              "$type": "color",
+              "$value": {
+                "Light": "#C1F79B",
+                "Dark": "#48871B"
+              }
+            },
+            "Green-400": {
+              "$type": "color",
+              "$value": {
+                "Light": "#9FF067",
+                "Dark": "#9FF067"
+              }
+            },
+            "Green-500": {
+              "$type": "color",
+              "$value": {
+                "Light": "#63D115",
+                "Dark": "#C1F79B"
+              }
+            },
+            "Green-600": {
+              "$type": "color",
+              "$value": {
+                "Light": "#3D9400",
+                "Dark": "#D9FCC0"
+              }
+            },
+            "Green-100": {
+              "$type": "color",
+              "$value": {
+                "Light": "#E7FCD9",
+                "Dark": "#223B12"
+              }
+            }
+          },
+          "Pink": {
+            "Pink-100": {
+              "$type": "color",
+              "$value": {
+                "Light": "#FFE0E7",
+                "Dark": "#7F1934"
+              }
+            },
+            "Pink-200": {
+              "$type": "color",
+              "$value": {
+                "Light": "#FEB3C3",
+                "Dark": "#A6173D"
+              }
+            },
+            "Pink-300": {
+              "$type": "color",
+              "$value": {
+                "Light": "#FF7197",
+                "Dark": "#D62957"
+              }
+            },
+            "Pink-400": {
+              "$type": "color",
+              "$value": {
+                "Light": "#FC5B86",
+                "Dark": "#FC5B86"
+              }
+            },
+            "Pink-500": {
+              "$type": "color",
+              "$value": {
+                "Light": "#D62957",
+                "Dark": "#FF7197"
+              }
+            },
+            "Pink-600": {
+              "$type": "color",
+              "$value": {
+                "Light": "#A6173D",
+                "Dark": "#FEB3C3"
+              }
+            }
+          },
+          "gradient": {
+            "Default Dark": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 163.43,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#55D48E"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#ABEDC9"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Split Gradients/Default Dark"
+                }
+              }
+            },
+            "Default Light": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 93.41,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#55D48E"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#ABEDC9"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Split Gradients/Default Light"
+                }
+              }
+            },
+            "Positive": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 180,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#55D48E"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#ADEBC9"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Split Gradients/Positive"
+                }
+              }
+            },
+            "Negative": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 180,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FF4C52"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#FFD6D6"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Split Gradients/Negative"
+                }
+              }
+            }
+          }
+        },
+        "Plus": {
+          "Plus Points": {
+            "$type": "color",
+            "$value": {
+              "Light": "#E4CBFF",
+              "Dark": "#CEB7E6"
+            }
+          },
+          "Plus Solid": {
+            "$type": "color",
+            "$value": {
+              "Light": "#9F00D614",
+              "Dark": "#9F00D640"
+            }
+          },
+          "gradient": {
+            "Default": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 0,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FF5C4D"
+                  },
+                  {
+                    "position": 30,
+                    "color": "#EB469F"
+                  },
+                  {
+                    "position": 75,
+                    "color": "#8341EF"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#3F68F9"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Plus Gradients/Default"
+                }
+              }
+            },
+            "Glyph": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 360,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FF5C4D"
+                  },
+                  {
+                    "position": 40,
+                    "color": "#EB469F"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#8341EF"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Plus Gradients/Glyph"
+                }
+              }
+            },
+            "Card": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 360,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FF5C4D"
+                  },
+                  {
+                    "position": 40,
+                    "color": "#EB469F"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#8341EF"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Plus Gradients/Card"
+                }
+              }
+            },
+            "Points": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 360,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FE7367"
+                  },
+                  {
+                    "position": 40,
+                    "color": "#EB469F"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#945CF0"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Plus Gradients/Points"
+                }
+              }
+            },
+            "Text": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 360,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#8341EF"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#3F68F9"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Plus Gradients/Text"
+                }
+              }
+            },
+            "Stroke": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 360,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FF5C4D"
+                  },
+                  {
+                    "position": 40,
+                    "color": "#EB469F"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#8341EF"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Plus Gradients/Stroke"
+                }
+              }
+            },
+            "Blur": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "angular",
+                "angle": 0,
+                "stops": [
+                  {
+                    "position": 43.22,
+                    "color": "#FFA78A"
+                  },
+                  {
+                    "position": 74.41,
+                    "color": "#F07CE500",
+                    "opacity": 0
+                  },
+                  {
+                    "position": 99.98,
+                    "color": "#AD74FF"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Plus Gradients/Blur"
+                }
+              }
+            },
+            "Plus Product Card": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 321.49,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#9961AD00",
+                    "opacity": 0
+                  },
+                  {
+                    "position": 100,
+                    "color": "#9961AD33",
+                    "opacity": 0.2
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Plus Gradients/Plus Product Card"
+                }
+              },
+              "$description": "Карточка продукта на главной"
+            }
+          }
+        },
+        "Pay": {
+          "Sunrise": {
+            "$type": "color",
+            "$value": {
+              "Light": "#E2C1F9",
+              "Dark": "#E2C1F9"
+            }
+          },
+          "Sunset": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FFB1D4",
+              "Dark": "#FFB1D4"
+            }
+          },
+          "Sunshine": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FBFFE4",
+              "Dark": "#FBFFE4"
+            }
+          },
+          "Blue Sky": {
+            "$type": "color",
+            "$value": {
+              "Light": "#B6CFF7",
+              "Dark": "#B6CFF7"
+            }
+          },
+          "Base Black": {
+            "$type": "color",
+            "$value": {
+              "Light": "#170023",
+              "Dark": "#170023"
+            }
+          },
+          "Pay Black 2": {
+            "$type": "color",
+            "$value": {
+              "Light": "#242424",
+              "Dark": "#FFFFFF"
+            }
+          },
+          "gradient": {
+            "Card Fill Radial": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "radial",
+                "angle": 41.08,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#E2C1F9"
+                  },
+                  {
+                    "position": 33,
+                    "color": "#FEBECE"
+                  },
+                  {
+                    "position": 66,
+                    "color": "#FBFFE4"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#B6CFF7"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Pay Gradients/Card Fill Radial"
+                }
+              }
+            },
+            "Card Fill Diamond": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "angular",
+                "angle": 83.47,
+                "stops": [
+                  {
+                    "position": 11,
+                    "color": "#F6FCA5ED",
+                    "opacity": 0.93
+                  },
+                  {
+                    "position": 14.17,
+                    "color": "#E9CAF9A3",
+                    "opacity": 0.64
+                  },
+                  {
+                    "position": 17.34,
+                    "color": "#A9BBE8CC",
+                    "opacity": 0.8
+                  },
+                  {
+                    "position": 94.06,
+                    "color": "#CDA1EFE0",
+                    "opacity": 0.88
+                  },
+                  {
+                    "position": 99.88,
+                    "color": "#EC90D1FC",
+                    "opacity": 0.99
+                  },
+                  {
+                    "position": 100,
+                    "color": "#FB19E1"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Pay Gradients/Card Fill Diamond"
+                }
+              }
+            },
+            "Card Border": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "radial",
+                "angle": 298.36,
+                "stops": [
+                  {
+                    "position": 8.17,
+                    "color": "#FEBECE"
+                  },
+                  {
+                    "position": 26.76,
+                    "color": "#C6DEFD"
+                  },
+                  {
+                    "position": 53.96,
+                    "color": "#F1D3DB"
+                  },
+                  {
+                    "position": 80.68,
+                    "color": "#E4D8C4"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#7693DD"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Pay Gradients/Card Border"
+                }
+              }
+            },
+            "Sticker": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "angular",
+                "angle": 171.13,
+                "stops": [
+                  {
+                    "position": 9.63,
+                    "color": "#B6D0F7"
+                  },
+                  {
+                    "position": 25.62,
+                    "color": "#FBFFE4"
+                  },
+                  {
+                    "position": 51.92,
+                    "color": "#FFABC4"
+                  },
+                  {
+                    "position": 82.69,
+                    "color": "#E2C1F9"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Pay Gradients/Sticker"
+                }
+              }
+            }
+          }
+        },
+        "Loans": {
+          "Base": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FFF0BD",
+              "Dark": "#E6D8AB"
+            }
+          },
+          "gradient": {
+            "Loans Product Card": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 321.49,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#CC7ACC00",
+                    "opacity": 0
+                  },
+                  {
+                    "position": 100,
+                    "color": "#CC7ACC33",
+                    "opacity": 0.2
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Loans Gradients/Loans Product Card"
+                }
+              }
+            }
+          }
+        },
+        "Pro": {
+          "gradient": {
+            "Base": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 360,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#3B3C40"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#2F3033"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Pro Gradients/Base"
+                }
+              }
+            }
+          }
+        },
+        "Background": {
+          "gradient": {
+            "Muted": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 270,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FFFFFF00",
+                    "opacity": 0
+                  },
+                  {
+                    "position": 55,
+                    "color": "#FFFFFF"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Background Gradients/Muted"
+                }
+              }
+            },
+            "HSGradient": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 270,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FFFFFF"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#EDEFF2"
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Background Gradients/HSGradient"
+                }
+              }
+            }
+          }
+        },
+        "Other": {
+          "gradient": {
+            "GoFogLR": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 0,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#FFFFFF"
+                  },
+                  {
+                    "position": 100,
+                    "color": "#FFFFFF00",
+                    "opacity": 0
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "Other Gradients/GoFogLR"
+                }
+              }
+            }
+          }
+        },
+        "S7": {
+          "gradient": {
+            "S7 Product Card": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 321.49,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#B5C50600",
+                    "opacity": 0
+                  },
+                  {
+                    "position": 100,
+                    "color": "#B5C50633",
+                    "opacity": 0.2
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "S7 Gradients/S7 Product Card"
+                }
+              },
+              "$description": "Карточка продукта на главной"
+            }
+          }
+        },
+        "X5": {
+          "gradient": {
+            "X5 Product Card": {
+              "$type": "gradient",
+              "$value": {
+                "kind": "linear",
+                "angle": 321.49,
+                "stops": [
+                  {
+                    "position": 0,
+                    "color": "#4AC2A800",
+                    "opacity": 0
+                  },
+                  {
+                    "position": 100,
+                    "color": "#4AC2A833",
+                    "opacity": 0.2
+                  }
+                ]
+              },
+              "$extensions": {
+                "clr": {
+                  "styleName": "X5 Gradients/X5 Product Card"
+                }
+              },
+              "$description": "Карточка продукта на главной"
             }
           }
         }
       }
     },
     {
-      "name": "Product.Other",
+      "name": "External",
       "modes": [
         "Light",
         "Dark"
       ],
       "tokens": {
-        "gradient": {
-          "GoFogLR": {
-            "$type": "gradient",
+        "S7": {
+          "Base": {
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 0,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#FFFFFF"
-                },
-                {
-                  "position": 100,
-                  "color": "#FFFFFF00",
-                  "opacity": 0
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Other.Gradients/GoFogLR"
-              }
+              "Light": "#B5C506",
+              "Dark": "#B5C506"
             }
           }
-        }
-      }
-    },
-    {
-      "name": "Product.S7",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "tokens": {
-        "gradient": {
-          "S7 Product Card": {
-            "$type": "gradient",
+        },
+        "Yandex": {
+          "Yandex Red 2": {
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 321.49,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#B5C50600",
-                  "opacity": 0
-                },
-                {
-                  "position": 100,
-                  "color": "#B5C50633",
-                  "opacity": 0.2
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "S7.Gradients/S7 Product Card"
-              }
-            },
-            "$description": "Карточка продукта на главной"
+              "Light": "#F8604A",
+              "Dark": "#F8604A"
+            }
+          },
+          "Yandex Red": {
+            "$type": "color",
+            "$value": {
+              "Light": "#FC3F1D",
+              "Dark": "#FC3F1D"
+            }
           }
-        }
-      }
-    },
-    {
-      "name": "Product.X5",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "tokens": {
-        "gradient": {
-          "X5 Product Card": {
-            "$type": "gradient",
+        },
+        "Product": {
+          "Mono Logo": {
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 321.49,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#4AC2A800",
-                  "opacity": 0
-                },
-                {
-                  "position": 100,
-                  "color": "#4AC2A833",
-                  "opacity": 0.2
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "X5.Gradients/X5 Product Card"
-              }
-            },
-            "$description": "Карточка продукта на главной"
-          }
-        }
-      }
-    },
-    {
-      "name": "Product.Loans",
-      "modes": [
-        "Light",
-        "Dark"
-      ],
-      "tokens": {
-        "gradient": {
-          "Loans Product Card": {
-            "$type": "gradient",
+              "Light": "#000000",
+              "Dark": "#FFFFFF"
+            }
+          },
+          "Mono Logo Inverted": {
+            "$type": "color",
             "$value": {
-              "kind": "linear",
-              "angle": 321.49,
-              "stops": [
-                {
-                  "position": 0,
-                  "color": "#CC7ACC00",
-                  "opacity": 0
-                },
-                {
-                  "position": 100,
-                  "color": "#CC7ACC33",
-                  "opacity": 0.2
-                }
-              ]
-            },
-            "$extensions": {
-              "clr": {
-                "styleName": "Loans.Gradients/Loans Product Card"
-              }
+              "Light": "#FFFFFF",
+              "Dark": "#000000"
             }
           }
         }

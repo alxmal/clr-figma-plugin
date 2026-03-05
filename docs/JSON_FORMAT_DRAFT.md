@@ -97,7 +97,7 @@
   },
   "$extensions": {
     "clr": {
-      "styleName": "Pay.Gradients/bg/hero"
+      "styleName": "Pay Gradients/bg/hero"
     }
   }
 }
@@ -139,12 +139,11 @@
 - `$type: "gradient"` маппится в Local Paint Styles:
   - token path (`gradient.bg.hero`) -> имя стиля (`$extensions.clr.styleName`),
   - при отсутствии `styleName` применяется конвенция по имени коллекции:
-    - `Product.Pay` -> `Pay.Gradients/...`,
-    - `Product.Pro` -> `Pro.Gradients/...`,
-    - `Semantic.Pay` -> `Pay.Gradients/...`,
-    - `Semantic.Common` -> префикс не добавляется (или инферится продукт из пути, если возможно),
-    - `Core*` -> `Core.Gradients/...`,
-  - legacy имена (`Gradients/...`, `product/.../gradient/...`) нормализуются к конвенции при import/export,
+    - `Product.Pay` -> `Pay Gradients/...`,
+    - `Product.Pro` -> `Pro Gradients/...`,
+    - `External.S7` -> `S7 Gradients/...`,
+    - `Core*` -> `Core Gradients/...`,
+  - legacy имена не поддерживаются,
   - `stop.position` (`0..100`) <-> `gradientStops[].position` (`0..1`),
   - literal stop color переносится как RGBA,
   - alias stop color разрешен в JSON и должен сохраняться при export/import без потери структуры.
@@ -163,11 +162,12 @@
 - держать mode для тем (`Light`, `Dark`, ...), а не для продуктов;
 - разделять коллекции по слоям:
   - `Core` - primitives,
-  - `Product.<Name>` - брендовые/продуктовые токены,
-  - `Semantic.<Name>` - токены назначения в UI;
+  - `Common` - общая семантика,
+  - `Product` - продуктовые ветки внутри `tokens`,
+  - `External` - внешние/партнерские ветки внутри `tokens`;
 - строить ссылки сверху вниз:
-  - `Semantic.<Name>` -> `Product.<Name>` / `Core`,
-  - `Product.<Name>` -> `Core`;
+  - `Common` -> `Product` / `Core`,
+  - `Product` -> `Core`;
 - избегать циклических alias-цепочек между продуктами.
 
 См. рабочий шаблон: `examples/multi-product-tokens.json`.

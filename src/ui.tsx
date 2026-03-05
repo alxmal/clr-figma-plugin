@@ -10,6 +10,7 @@ import { emit, on } from "@create-figma-plugin/utilities";
 import { h } from "preact";
 import { useCallback, useEffect, useState } from "preact/hooks";
 import type {
+  ClearColorsHandler,
   ErrorHandler,
   ExportJsonHandler,
   ExportResultHandler,
@@ -28,12 +29,46 @@ const INITIAL_JSON = `{
 
 void h;
 
+function copyWithExecCommand(text: string): boolean {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  textarea.style.pointerEvents = "none";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+
+  let copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } catch {
+    copied = false;
+  }
+
+  textarea.remove();
+  return copied;
+}
+
+async function copyTextToClipboard(text: string): Promise<boolean> {
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  return false;
+}
+
 function Plugin() {
   const [rawJson, setRawJson] = useState(INITIAL_JSON);
   const [status, setStatus] = useState("Ready");
   const [exportJson, setExportJson] = useState("");
   const [isBusy, setIsBusy] = useState(false);
-  const [busyAction, setBusyAction] = useState<"import" | "export" | "docs" | null>(null);
+  const [busyAction, setBusyAction] = useState<"import" | "export" | "docs" | "clear" | null>(null);
 
   useEffect(function () {
     const unbindStatus = on<StatusHandler>("STATUS", function (message: string) {
@@ -41,7 +76,8 @@ function Plugin() {
       if (
         message.startsWith("Import complete:") ||
         message.startsWith("Export complete:") ||
-        message.startsWith("Docs generated:")
+        message.startsWith("Docs generated:") ||
+        message.startsWith("Cleared colors:")
       ) {
         setIsBusy(false);
         setBusyAction(null);
@@ -87,15 +123,36 @@ function Plugin() {
     emit<GenerateDocsHandler>("GENERATE_DOCS");
   }, []);
 
+  const handleClearColors = useCallback(function () {
+    const confirmed = window.confirm(
+      "Remove all local variables and paint styles in this file? This action cannot be undone."
+    );
+    if (!confirmed) {
+      return;
+    }
+    setIsBusy(true);
+    setBusyAction("clear");
+    setStatus("Clearing colors... please wait.");
+    emit<ClearColorsHandler>("CLEAR_COLORS");
+  }, []);
+
   const handleCopyStatus = useCallback(function () {
     const text = status.trim();
     if (text.length === 0) {
       return;
     }
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setStatus("Status copied to clipboard.");
+
+    // Keep copy attempt synchronous in click handler for Figma webview.
+    const copiedSync = copyWithExecCommand(text);
+    if (copiedSync) {
+      setStatus("Status copied to clipboard.");
+      return;
+    }
+
+    // Fallback for environments where async Clipboard API is available.
+    copyTextToClipboard(text)
+      .then((copied) => {
+        setStatus(copied ? "Status copied to clipboard." : "Failed to copy status text.");
       })
       .catch(() => {
         setStatus("Failed to copy status text.");
@@ -163,6 +220,16 @@ function Plugin() {
         loading={isBusy && busyAction === "docs"}
       >
         Generate docs
+      </Button>
+      <VerticalSpace space="extraSmall" />
+      <Button
+        fullWidth
+        danger
+        onClick={handleClearColors}
+        disabled={isBusy}
+        loading={isBusy && busyAction === "clear"}
+      >
+        Clear colors
       </Button>
       <VerticalSpace space="extraSmall" />
       <Button fullWidth secondary onClick={handleSaveExport} disabled={isBusy}>

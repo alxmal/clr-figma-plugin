@@ -61,6 +61,6 @@
 ## Current Status Notes
 
 - Import/export для variables и gradients реализован.
-- Поддержан multi-product подход через отдельные коллекции `Product.*` / `Semantic.*`.
+- Поддержан multi-product подход через unified-коллекции `Common` / `Core` / `Product` / `External`.
 - Добавлена утилита миграции legacy JSON в multi-product структуру.
 - Документация генерируется по коллекциям и учитывает gradient styles.

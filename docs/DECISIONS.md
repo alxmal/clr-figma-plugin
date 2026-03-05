@@ -48,18 +48,21 @@
 
 ### Multi-product collections
 
-- Для систем с несколькими продуктами используем отдельные коллекции `Product.*` и `Semantic.*`.
+- Для систем с несколькими продуктами используем unified-коллекции:
+  - `Common`
+  - `Core`
+  - `Product` (ветки продуктов внутри `tokens`)
+  - `External` (ветки партнеров внутри `tokens`)
 - Продукт не моделируется через mode; mode оставляем для тем (`Light/Dark/...`).
 
 ### Gradient style naming
 
 - Градиенты остаются токенами `$type: "gradient"` в JSON и материализуются в Local Paint Styles.
 - Нейминг styleName нормализуется по коллекции:
-  - `Product.<Name>` -> `<Name>.Gradients/...`
-  - `Semantic.<Name>` -> `<Name>.Gradients/...`
-  - `Semantic.Common` -> без верхней common-обёртки
-  - `Core*` -> `Core.Gradients/...`
-- Поддерживается обратная совместимость с legacy путями (`Gradients/...`, `product/.../gradient/...`) через нормализацию/инференс.
+  - `Product.<Name>` -> `<Name> Gradients/...`
+  - `External.<Name>` -> `<Name> Gradients/...`
+  - `Core*` -> `Core Gradients/...`
+- Legacy naming (`*.Gradients`, `product/.../gradient/...`) не поддерживается.
 
 ### Import sync cleanup
 
