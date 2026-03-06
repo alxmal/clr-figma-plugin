@@ -34,3 +34,37 @@ export interface ExportResultHandler extends EventHandler {
   name: "EXPORT_RESULT";
   handler: (json: string) => void;
 }
+
+export interface LoadCollectionsHandler extends EventHandler {
+  name: "LOAD_COLLECTIONS";
+  handler: () => void;
+}
+
+export interface CollectionSummary {
+  id: string;
+  name: string;
+}
+
+export interface CollectionsResultHandler extends EventHandler {
+  name: "COLLECTIONS_RESULT";
+  handler: (collections: CollectionSummary[]) => void;
+}
+
+export interface CollectionContentNode {
+  kind: "group" | "variable";
+  name: string;
+  children?: CollectionContentNode[];
+}
+
+export interface LoadCollectionContentHandler extends EventHandler {
+  name: "LOAD_COLLECTION_CONTENT";
+  handler: (collectionId: string) => void;
+}
+
+export interface CollectionContentResultHandler extends EventHandler {
+  name: "COLLECTION_CONTENT_RESULT";
+  handler: (payload: {
+    collectionId: string;
+    nodes: CollectionContentNode[];
+  }) => void;
+}

@@ -8,6 +8,8 @@
     "watch": "build-figma-plugin --typecheck --watch",
     "clean": "rm -rf build manifest.json",
     "migrate:multi-product": "node scripts/migrate-multi-product.mjs",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest"
